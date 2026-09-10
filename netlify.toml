@@ -1,7 +1,8 @@
+# Netlify deployment for this TanStack Start app.
+# The build targets Netlify's serverless runtime via the nitro "netlify" preset
+# (see vite.config.ts); nitro writes the output Netlify expects.
 [build]
   command = "npm run build"
-  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "22"
-  NITRO_PRESET = "netlify"
