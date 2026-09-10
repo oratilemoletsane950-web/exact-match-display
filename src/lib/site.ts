@@ -7,9 +7,8 @@
 export const LINKS = {
   /**
    * Thundafund crowdfunding campaign URL.
-   * TODO: replace with the exact campaign page URL once the campaign is live.
    */
-  thundafund: "https://www.thundafund.com/",
+  thundafund: "https://thundafund.africa/campaign/B0FF1B69BF645BC9E708",
   /** GitHub organisation / repository URL — empty until the org is created. */
   github: "",
   /** Contact email address (without the "mailto:" prefix) */
