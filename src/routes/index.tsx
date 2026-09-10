@@ -759,17 +759,25 @@ function Index() {
             </div>
             <div>
               <p className="label-mono text-muted-foreground">Code</p>
-              <a
-                href={LINKS.github}
-                className="link-underline hover:link-underline-hover mt-3 inline-block text-sm"
-              >
-                GitHub
-              </a>
+              {LINKS.github ? (
+                <a
+                  href={LINKS.github}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="link-underline hover:link-underline-hover mt-3 inline-block text-sm"
+                >
+                  GitHub
+                </a>
+              ) : (
+                <p className="mt-3 text-sm text-muted-foreground">GitHub — coming soon</p>
+              )}
             </div>
             <div>
               <p className="label-mono text-muted-foreground">Campaign</p>
               <a
                 href={LINKS.thundafund}
+                target="_blank"
+                rel="noreferrer noopener"
                 className="link-underline hover:link-underline-hover mt-3 inline-block text-sm"
               >
                 Thundafund
