@@ -27,3 +27,10 @@ npm run dev
 - TypeScript
 - React
 - Tailwind CSS
+
+## Deploying to Netlify
+
+This repo is ready for Netlify. Connect the repository and Netlify picks up
+`netlify.toml` (build command `npm run build`, Node 22). The server-rendered
+part of the site is built for Netlify's serverless runtime automatically, so no
+extra settings, redirect rules or publish directory are required.
