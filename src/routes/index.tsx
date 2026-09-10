@@ -508,6 +508,8 @@ function Index() {
                 </p>
                 <a
                   href={LINKS.thundafund}
+                  target="_blank"
+                  rel="noreferrer noopener"
                   className="label-mono mt-10 inline-block border border-foreground px-7 py-4 transition-colors hover:bg-foreground hover:text-background"
                 >
                   Support Obsidian Labs
@@ -594,6 +596,8 @@ function Index() {
           <Reveal className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
             <a
               href={LINKS.thundafund}
+              target="_blank"
+              rel="noreferrer noopener"
               className="label-mono bg-foreground px-7 py-4 text-background transition-colors hover:bg-ink-soft"
             >
               Support Obsidian Labs
@@ -729,6 +733,8 @@ function Index() {
               <div className="flex flex-wrap items-center gap-x-8 gap-y-4 md:col-span-6 md:justify-end">
                 <a
                   href={LINKS.thundafund}
+                  target="_blank"
+                  rel="noreferrer noopener"
                   className="label-mono bg-background px-7 py-4 text-foreground transition-opacity hover:opacity-85"
                 >
                   Support the Build
