@@ -1,8 +1,13 @@
 # Netlify deployment for this TanStack Start app.
 # The build targets Netlify's serverless runtime via the nitro "netlify" preset
-# (see vite.config.ts); nitro writes the output Netlify expects.
+# (see vite.config.ts). That preset writes:
+#   - static assets (CSS/JS/images) -> dist/
+#   - the SSR handler             -> .netlify/functions-internal/
+# `publish` MUST point at dist/, otherwise Netlify publishes the repo root and
+# every /assets/*.css and /assets/*.js request 404s (page renders unstyled).
 [build]
   command = "npm run build"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "22"
