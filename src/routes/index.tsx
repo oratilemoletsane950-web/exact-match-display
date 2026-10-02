@@ -7,7 +7,7 @@ import { LINKS, MAILTO } from "@/lib/site";
 
 const TITLE = "Obsidian Labs — Building Software From the Ground Up";
 const DESCRIPTION =
-  "Obsidian Labs is a South African student-led technology company developing software, digital products and games while creating practical opportunities for emerging developers.";
+  "Obsidian Labs is a South African student-led technology company developing software, digital products and games — and training the next generation of developers through structured, practical programmes.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "Obsidian Labs, Continental Obsidian Ltd, South African software development, student software developers, university software, technology startup South Africa",
+          "Obsidian Labs, Continental Obsidian Ltd, South African software development, student software developers, student training programmes, software training South Africa, university software, technology startup South Africa",
       },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
@@ -205,6 +205,25 @@ const RUNWAY = [
 
 const PIPELINE = ["Idea", "AI-assisted development", "Prototype", "Test", "Product"];
 
+const TRAINING_PILLARS = [
+  {
+    title: "Practical foundations",
+    body: "Core programming, code standards, version control and the professional workflow used on real projects.",
+  },
+  {
+    title: "AI-assisted development",
+    body: "Hands-on training with the same AI development tooling our production teams use daily.",
+  },
+  {
+    title: "Project readiness",
+    body: "How real products are planned, scoped, tested and shipped — not just how code is written.",
+  },
+  {
+    title: "Mentored build-up",
+    body: "Guided practice on internal exercises and prototypes before students touch live project work.",
+  },
+];
+
 const FUTURE_FUNDING = [
   "Business loans",
   "Private investment",
@@ -273,7 +292,7 @@ function Index() {
               {[
                 "Continental Obsidian Ltd",
                 "South Africa",
-                "Software development / 2026",
+                "Software development & student training / 2026",
                 "Obsidian Labs / 001",
               ].map((meta) => (
                 <li key={meta} className="label-mono text-muted-foreground">
@@ -365,8 +384,99 @@ function Index() {
           </div>
         </Section>
 
+        {/* --------------------------------------------------------- training */}
+        <Section id="training" label="03" name="Training">
+          <Reveal>
+            <h2 className="display-lg max-w-[24ch]">Trained first. Trusted with real work.</h2>
+            <p className="body-lead mt-8 max-w-[52ch]">
+              Before any student works on a product, they are trained. Obsidian Labs provides
+              structured, practical training to every student developer before they join a
+              project team.
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-10 lg:grid-cols-12">
+            <Reveal className="lg:col-span-7">
+              <p className="max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
+                Our training programme develops the fundamentals of professional software
+                development: coding standards, version control, AI-assisted tooling, product
+                thinking and how real projects are planned, built and shipped.
+              </p>
+              <p className="mt-4 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
+                Only once training is complete do students move onto live development work —
+                so clients, supporters and users always work with prepared developers, not
+                beginners.
+              </p>
+              <ol className="mt-10">
+                {TRAINING_PILLARS.map((row, i) => (
+                  <Reveal
+                    as="li"
+                    key={row.title}
+                    delay={i * 60}
+                    className="rule-top grid gap-2 py-6 last:border-b last:border-border md:grid-cols-12 md:gap-8"
+                  >
+                    <span className="label-mono text-accent md:col-span-1">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="text-sm font-medium tracking-tight uppercase md:col-span-4">
+                      {row.title}
+                    </h3>
+                    <p className="max-w-[56ch] text-sm leading-relaxed text-muted-foreground md:col-span-7">
+                      {row.body}
+                    </p>
+                  </Reveal>
+                ))}
+              </ol>
+            </Reveal>
+
+            <Reveal delay={120} className="lg:col-span-5">
+              <dl>
+                {[
+                  ["Training capacity", "100+ students"],
+                  ["Delivery", "Dedicated training platform"],
+                  ["Platform status", "In development"],
+                  ["Student association", "Launching next year"],
+                  ["Path", "Train → Build → Work"],
+                ].map(([k, v]) => (
+                  <div
+                    key={k}
+                    className="rule-top flex items-baseline justify-between gap-6 py-4 last:border-b last:border-border"
+                  >
+                    <dt className="label-mono text-muted-foreground">{k}</dt>
+                    <dd className="text-right text-sm font-medium tracking-tight uppercase md:text-base">
+                      {v}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+                A dedicated training website is currently in development and is being built to
+                accommodate more than 100 students at a time.
+              </p>
+            </Reveal>
+          </div>
+
+          <Reveal className="mt-16 grid gap-8 border-y-2 border-foreground py-10 lg:grid-cols-12 lg:gap-8">
+            <div className="lg:col-span-4">
+              <p className="label-mono text-accent">Planned / next year</p>
+              <h3 className="display-md mt-4 max-w-[16ch]">The Student Association</h3>
+            </div>
+            <div className="lg:col-span-7 lg:col-start-6">
+              <p className="body-lead max-w-[52ch]">
+                Next year, we plan to establish the Obsidian Labs Student Association.
+              </p>
+              <p className="mt-5 max-w-[60ch] text-sm leading-relaxed text-muted-foreground">
+                Association members will produce real projects while developing the skills to
+                train other students — meaning graduates of our programme become its future
+                trainers. This creates a self-sustaining pipeline: students learn by building,
+                then lead by teaching.
+              </p>
+            </div>
+          </Reveal>
+        </Section>
+
         {/* ---------------------------------------------------------- tooling */}
-        <Section id="tooling" label="03" name="Tooling">
+        <Section id="tooling" label="04" name="Tooling">
           <Reveal>
             <h2 className="display-lg max-w-[20ch]">Small team. Serious tooling.</h2>
           </Reveal>
@@ -415,7 +525,7 @@ function Index() {
         </Section>
 
         {/* --------------------------------------------------------- products */}
-        <Section id="products" label="04" name="Products">
+        <Section id="products" label="05" name="Products">
           <Reveal>
             <h2 className="display-lg max-w-[18ch]">First build. Then scale.</h2>
             <p className="body-lead mt-8 max-w-[48ch]">
@@ -491,7 +601,7 @@ function Index() {
         <section id="campaign" className="invert-surface">
           <div className="shell py-16 md:py-24 lg:py-32">
             <Reveal>
-              <SectionLabel index="05" name="The first round" />
+              <SectionLabel index="06" name="The first round" />
               <h2 className="display-lg mt-8 max-w-[22ch]">Help us build the foundation.</h2>
             </Reveal>
 
@@ -565,7 +675,7 @@ function Index() {
         </section>
 
         {/* ------------------------------------------------------- supporters */}
-        <Section id="supporters" label="06" name="Supporters">
+        <Section id="supporters" label="07" name="Supporters">
           <Reveal>
             <h2 className="display-lg max-w-[24ch]">
               Back the build. Become part of the beginning.
@@ -610,7 +720,7 @@ function Index() {
         </Section>
 
         {/* ----------------------------------------------------------- runway */}
-        <Section id="runway" label="07" name="The runway">
+        <Section id="runway" label="08" name="The runway">
           <Reveal>
             <h2 className="display-lg max-w-[20ch]">Eight months to prove the model.</h2>
           </Reveal>
@@ -653,7 +763,7 @@ function Index() {
         </Section>
 
         {/* ---------------------------------------------------- future funding */}
-        <Section id="next" label="08" name="What comes next">
+        <Section id="next" label="09" name="What comes next">
           <Reveal>
             <h2 className="display-lg max-w-[24ch]">The first R50,000 is the foundation.</h2>
           </Reveal>
