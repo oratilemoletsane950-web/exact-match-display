@@ -818,11 +818,12 @@ function Index() {
                 experimental technology while establishing a foundation for future technology
                 ventures.
               </p>
-            </Reveal>
-          </div>
-        </Section>
-
-        {/* -------------------------------------------------------- final CTA */}
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                Alongside product development, the laboratory operates a structured student
+                training programme and is establishing a student association — building a
+                sustainable pipeline of trained developers for the company and the wider
+                industry.
+              </p>
         <section className="invert-surface">
           <div className="shell py-20 md:py-28 lg:py-36">
             <Reveal>
