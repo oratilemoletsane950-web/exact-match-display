@@ -6,9 +6,9 @@
  */
 export const LINKS = {
   /**
-   * Thundafund crowdfunding campaign URL.
+   * BackaBuddy crowdfunding campaign URL.
    */
-  thundafund: "https://thundafund.africa/campaign/B0FF1B69BF645BC9E708",
+  backabuddy: "https://www.backabuddy.co.za/campaign/obsidian-labs-launch",
   /** GitHub organisation / repository URL — empty until the org is created. */
   github: "",
   /** Contact email address (without the "mailto:" prefix) */
