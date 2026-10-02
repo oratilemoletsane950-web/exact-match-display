@@ -824,6 +824,11 @@ function Index() {
                 sustainable pipeline of trained developers for the company and the wider
                 industry.
               </p>
+            </Reveal>
+          </div>
+        </Section>
+
+        {/* -------------------------------------------------------- final CTA */}
         <section className="invert-surface">
           <div className="shell py-20 md:py-28 lg:py-36">
             <Reveal>
