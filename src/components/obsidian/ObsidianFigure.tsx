@@ -42,7 +42,10 @@ export function ObsidianFigure({ className = "" }: { className?: string }) {
       {/* faceted mineral body */}
       <g fill="none" stroke="currentColor" strokeWidth="1.1">
         <path d="M240 46 108 214l52 240 148 44 112-206-56-190z" strokeOpacity="0.9" />
-        <path d="M240 46 160 454M240 46l112 288M108 214l244 120M108 214l132 120M420 298 240 166l-132 48M240 166l-80 288M240 166l112 168M308 498 240 166" strokeOpacity="0.42" />
+        <path
+          d="M240 46 160 454M240 46l112 288M108 214l244 120M108 214l132 120M420 298 240 166l-132 48M240 166l-80 288M240 166l112 168M308 498 240 166"
+          strokeOpacity="0.42"
+        />
       </g>
 
       {/* shaded facet */}

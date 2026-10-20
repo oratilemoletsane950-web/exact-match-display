@@ -82,9 +82,7 @@ export function SiteHeader() {
                   className="label-mono flex items-center justify-between py-4"
                 >
                   {item.label}
-                  <span className="text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
+                  <span className="text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
                 </a>
               </li>
             ))}

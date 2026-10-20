@@ -28,12 +28,15 @@ export function Hero() {
                 Building software from the ground up.
               </h1>
               <p className="body-lead mt-6 max-w-[40ch] text-neutral-300">
-                A South African technology company developing software, digital products and
-                games, and training the next generation of developers.
+                A South African technology company developing software, digital products and games,
+                and training the next generation of developers.
               </p>
               <ul className="mt-8 flex flex-wrap gap-3">
                 {PILLARS.map((p) => (
-                  <li key={p} className="label-mono border border-white/25 px-3 py-2 text-neutral-200">
+                  <li
+                    key={p}
+                    className="label-mono border border-white/25 px-3 py-2 text-neutral-200"
+                  >
                     {p}
                   </li>
                 ))}
@@ -45,7 +48,10 @@ export function Hero() {
                 >
                   About the company
                 </a>
-                <a href="#products" className="label-mono link-underline hover:link-underline-hover">
+                <a
+                  href="#products"
+                  className="label-mono link-underline hover:link-underline-hover"
+                >
                   What we build ↓
                 </a>
               </div>
