@@ -463,8 +463,8 @@ function Index() {
                 AI-assisted development will be a core part of our development workflow.
               </p>
               <p className="mt-6 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
-                Funding will allow our programming team to access tools such as Claude Pro / Claude
-                Code, Lovable and other AI-assisted development services.
+                Funding will allow our programming team to access professional development
+                tools and services that support faster delivery and experimentation.
               </p>
               <p className="mt-4 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
                 The purpose is not to replace developers. It is to give a small student team access
