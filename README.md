@@ -1,36 +1,30 @@
-# Welcome to your Lovable project
+# Obsidian Labs
 
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+Official website for Obsidian Labs.
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Requires Node.js 22 and npm.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
 npm run dev
 ```
 
-## Built with
+## Production build
+
+```sh
+npm run build
+npm run preview
+```
+
+## Technology
 
 - TanStack Start
-- TypeScript
 - React
+- TypeScript
 - Tailwind CSS
 
-## Deploying to Netlify
+## Deployment
 
-This repo is ready for Netlify. Connect the repository and Netlify picks up
-`netlify.toml` (build command `npm run build`, Node 22). The server-rendered
-part of the site is built for Netlify's serverless runtime automatically, so no
-extra settings, redirect rules or publish directory are required.
+The project includes Netlify configuration in `netlify.toml` and supports server-side rendering through Netlify functions.
