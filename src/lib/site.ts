@@ -16,3 +16,6 @@ export const LINKS = {
 } as const;
 
 export const MAILTO = `mailto:${LINKS.email}`;
+
+/** Spline scene shown in the hero. Swap for your own exported .splinecode URL. */
+export const SPLINE_SCENE = "https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode";
