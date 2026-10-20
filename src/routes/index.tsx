@@ -303,85 +303,61 @@ function Index() {
           </div>
         </section>
 
-        {/* -------------------------------------------------------------- why */}
-        <Section id="why" label="01" name="Why">
-          <Reveal>
-            <h2 className="display-lg max-w-[22ch]">We are starting small on purpose.</h2>
-          </Reveal>
-
-          <div className="mt-12 grid gap-10 lg:grid-cols-12">
-            <Reveal className="lg:col-span-7">
-              <p className="body-lead max-w-[52ch]">
-                Obsidian Labs is being built around a simple idea: a small, capable team should
-                be able to create serious software without requiring a massive initial budget.
-              </p>
-              <p className="mt-6 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
-                Our first objective is not to scale as quickly as possible. It is to build well,
-                establish working products, learn from real users and create a foundation that
-                can support larger opportunities later.
-              </p>
+        {/* ------------------------------------------------------------ about */}
+        <Section id="about" label="01" name="Company">
+          <div className="grid gap-10 md:grid-cols-12">
+            <Reveal className="md:col-span-5">
+              <h2 className="display-md max-w-[18ch]">
+                Obsidian Labs / Continental Obsidian Ltd
+              </h2>
             </Reveal>
-
-            <Reveal delay={120} className="lg:col-span-5">
-              <div className="border-y-2 border-foreground py-7">
-                <p className="display-md">
-                  R50,000 <span className="text-accent">→</span> 8+ month development runway
-                </p>
-              </div>
-              <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-                Our initial crowdfunding target is R50,000. We intend to use the funding
-                conservatively and stretch it across at least eight months of development.
+            <Reveal delay={100} className="md:col-span-6 md:col-start-7">
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Obsidian Labs operates as a technology development initiative under Continental
+                Obsidian Ltd.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                The laboratory is focused on developing software, digital products and
+                experimental technology while establishing a foundation for future technology
+                ventures.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                Alongside product development, the laboratory operates a structured student
+                training programme and is establishing a student association — building a
+                sustainable pipeline of trained developers for the company and the wider
+                industry.
               </p>
             </Reveal>
           </div>
         </Section>
 
-        {/* ----------------------------------------------------------- people */}
-        <Section id="people" label="02" name="People">
+        {/* --------------------------------------------------------- products */}
+        <Section id="products" label="02" name="Products">
           <Reveal>
-            <h2 className="display-lg max-w-[24ch]">
-              Built by students. Built for the real world.
-            </h2>
+            <h2 className="display-lg max-w-[18ch]">First build. Then scale.</h2>
+            <p className="body-lead mt-8 max-w-[48ch]">
+              Our first stage will focus on internal software and smaller digital products.
+            </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-10 lg:grid-cols-12">
-            <Reveal className="lg:col-span-7">
-              <p className="body-lead max-w-[50ch]">
-                The initial development team will consist of approximately 3–5 current
-                third-year Computer Science students.
-              </p>
-              <p className="mt-6 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
-                Initial compensation will generally range from R500–R1,000 depending on role,
-                responsibilities and contribution.
-              </p>
-              <p className="mt-4 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
-                The goal is to give students something more valuable than another theoretical
-                project: practical experience working on real software products with real users
-                and real constraints.
-              </p>
-            </Reveal>
-
-            <Reveal delay={120} className="lg:col-span-5">
-              <dl>
-                {[
-                  ["Team", "3–5 developers"],
-                  ["Compensation", "R500–R1,000 initial"],
-                  ["Output", "Real products"],
-                  ["Outcome", "Practical experience"],
-                ].map(([k, v]) => (
-                  <div
-                    key={k}
-                    className="rule-top flex items-baseline justify-between gap-6 py-4 last:border-b last:border-border"
-                  >
-                    <dt className="label-mono text-muted-foreground">{k}</dt>
-                    <dd className="text-right text-sm font-medium tracking-tight uppercase md:text-base">
-                      {v}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
-          </div>
+          <ol className="mt-14">
+            {ROADMAP.map((row, i) => (
+              <Reveal
+                as="li"
+                key={row.n}
+                delay={i * 60}
+                className="rule-top grid gap-3 py-7 md:grid-cols-12 md:gap-8 last:border-b last:border-border"
+              >
+                <span className="label-mono text-accent md:col-span-1">{row.n}</span>
+                <h3 className="text-lg font-medium tracking-tight uppercase md:col-span-4 md:text-xl">
+                  {row.title}
+                </h3>
+                <p className="max-w-[60ch] text-sm leading-relaxed text-muted-foreground md:col-span-7">
+                  {row.body}
+                </p>
+              </Reveal>
+            ))}
+          </ol>
         </Section>
 
         {/* --------------------------------------------------------- training */}
@@ -475,8 +451,56 @@ function Index() {
           </Reveal>
         </Section>
 
+        {/* ----------------------------------------------------------- people */}
+        <Section id="people" label="04" name="People">
+          <Reveal>
+            <h2 className="display-lg max-w-[24ch]">
+              Built by students. Built for the real world.
+            </h2>
+          </Reveal>
+
+          <div className="mt-12 grid gap-10 lg:grid-cols-12">
+            <Reveal className="lg:col-span-7">
+              <p className="body-lead max-w-[50ch]">
+                The initial development team will consist of approximately 3–5 current
+                third-year Computer Science students.
+              </p>
+              <p className="mt-6 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
+                Initial compensation will generally range from R500–R1,000 depending on role,
+                responsibilities and contribution.
+              </p>
+              <p className="mt-4 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
+                The goal is to give students something more valuable than another theoretical
+                project: practical experience working on real software products with real users
+                and real constraints.
+              </p>
+            </Reveal>
+
+            <Reveal delay={120} className="lg:col-span-5">
+              <dl>
+                {[
+                  ["Team", "3–5 developers"],
+                  ["Compensation", "R500–R1,000 initial"],
+                  ["Output", "Real products"],
+                  ["Outcome", "Practical experience"],
+                ].map(([k, v]) => (
+                  <div
+                    key={k}
+                    className="rule-top flex items-baseline justify-between gap-6 py-4 last:border-b last:border-border"
+                  >
+                    <dt className="label-mono text-muted-foreground">{k}</dt>
+                    <dd className="text-right text-sm font-medium tracking-tight uppercase md:text-base">
+                      {v}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+          </div>
+        </Section>
+
         {/* ---------------------------------------------------------- tooling */}
-        <Section id="tooling" label="04" name="Tooling">
+        <Section id="tooling" label="05" name="Tooling">
           <Reveal>
             <h2 className="display-lg max-w-[20ch]">Small team. Serious tooling.</h2>
           </Reveal>
@@ -524,35 +548,6 @@ function Index() {
           </div>
         </Section>
 
-        {/* --------------------------------------------------------- products */}
-        <Section id="products" label="05" name="Products">
-          <Reveal>
-            <h2 className="display-lg max-w-[18ch]">First build. Then scale.</h2>
-            <p className="body-lead mt-8 max-w-[48ch]">
-              Our first stage will focus on internal software and smaller digital products.
-            </p>
-          </Reveal>
-
-          <ol className="mt-14">
-            {ROADMAP.map((row, i) => (
-              <Reveal
-                as="li"
-                key={row.n}
-                delay={i * 60}
-                className="rule-top grid gap-3 py-7 md:grid-cols-12 md:gap-8 last:border-b last:border-border"
-              >
-                <span className="label-mono text-accent md:col-span-1">{row.n}</span>
-                <h3 className="text-lg font-medium tracking-tight uppercase md:col-span-4 md:text-xl">
-                  {row.title}
-                </h3>
-                <p className="max-w-[60ch] text-sm leading-relaxed text-muted-foreground md:col-span-7">
-                  {row.body}
-                </p>
-              </Reveal>
-            ))}
-          </ol>
-        </Section>
-
         {/* ----------------------------------------------------- philosophy */}
         <section className="rule-top">
           <div className="shell py-16 md:py-24 lg:py-32">
@@ -597,11 +592,44 @@ function Index() {
           </div>
         </section>
 
+        {/* -------------------------------------------------------------- why */}
+        <Section id="why" label="06" name="Approach">
+          <Reveal>
+            <h2 className="display-lg max-w-[22ch]">We are starting small on purpose.</h2>
+          </Reveal>
+
+          <div className="mt-12 grid gap-10 lg:grid-cols-12">
+            <Reveal className="lg:col-span-7">
+              <p className="body-lead max-w-[52ch]">
+                Obsidian Labs is being built around a simple idea: a small, capable team should
+                be able to create serious software without requiring a massive initial budget.
+              </p>
+              <p className="mt-6 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
+                Our first objective is not to scale as quickly as possible. It is to build well,
+                establish working products, learn from real users and create a foundation that
+                can support larger opportunities later.
+              </p>
+            </Reveal>
+
+            <Reveal delay={120} className="lg:col-span-5">
+              <div className="border-y-2 border-foreground py-7">
+                <p className="display-md">
+                  R50,000 <span className="text-accent">→</span> 8+ month development runway
+                </p>
+              </div>
+              <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+                Our initial crowdfunding target is R50,000. We intend to use the funding
+                conservatively and stretch it across at least eight months of development.
+              </p>
+            </Reveal>
+          </div>
+        </Section>
+
         {/* --------------------------------------------------------- campaign */}
         <section id="campaign" className="invert-surface">
           <div className="shell py-16 md:py-24 lg:py-32">
             <Reveal>
-              <SectionLabel index="06" name="The first round" />
+              <SectionLabel index="07" name="The campaign" />
               <h2 className="display-lg mt-8 max-w-[22ch]">Help us build the foundation.</h2>
             </Reveal>
 
@@ -675,7 +703,7 @@ function Index() {
         </section>
 
         {/* ------------------------------------------------------- supporters */}
-        <Section id="supporters" label="07" name="Supporters">
+        <Section id="supporters" label="08" name="Supporters">
           <Reveal>
             <h2 className="display-lg max-w-[24ch]">
               Back the build. Become part of the beginning.
@@ -720,7 +748,7 @@ function Index() {
         </Section>
 
         {/* ----------------------------------------------------------- runway */}
-        <Section id="runway" label="08" name="The runway">
+        <Section id="runway" label="09" name="The runway">
           <Reveal>
             <h2 className="display-lg max-w-[20ch]">Eight months to prove the model.</h2>
           </Reveal>
@@ -763,7 +791,7 @@ function Index() {
         </Section>
 
         {/* ---------------------------------------------------- future funding */}
-        <Section id="next" label="09" name="What comes next">
+        <Section id="next" label="10" name="What comes next">
           <Reveal>
             <h2 className="display-lg max-w-[24ch]">The first R50,000 is the foundation.</h2>
           </Reveal>
@@ -800,51 +828,23 @@ function Index() {
           </div>
         </Section>
 
-        {/* ------------------------------------------------------------ about */}
-        <Section id="about">
-          <div className="grid gap-10 md:grid-cols-12">
-            <Reveal className="md:col-span-5">
-              <h2 className="display-md max-w-[18ch]">
-                Obsidian Labs / Continental Obsidian Ltd
-              </h2>
-            </Reveal>
-            <Reveal delay={100} className="md:col-span-6 md:col-start-7">
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                Obsidian Labs operates as a technology development initiative under Continental
-                Obsidian Ltd.
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                The laboratory is focused on developing software, digital products and
-                experimental technology while establishing a foundation for future technology
-                ventures.
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Alongside product development, the laboratory operates a structured student
-                training programme and is establishing a student association — building a
-                sustainable pipeline of trained developers for the company and the wider
-                industry.
-              </p>
-            </Reveal>
-          </div>
-        </Section>
-
         {/* -------------------------------------------------------- final CTA */}
         <section className="invert-surface">
           <div className="shell py-20 md:py-28 lg:py-36">
             <Reveal>
-              <p className="label-mono text-muted-foreground">Obsidian Labs / Beginning</p>
+              <p className="label-mono text-muted-foreground">Obsidian Labs / Continental Obsidian Ltd</p>
               <h2 className="display-xl mt-8 max-w-[20ch]">
-                We are starting with R50,000.
+                A technology company, built from the ground up.
                 <span className="block text-muted-foreground">
-                  What we build with it is up to us.
+                  Start with what we make, or help fund it.
                 </span>
               </h2>
             </Reveal>
 
             <Reveal delay={120} className="mt-12 grid gap-10 md:grid-cols-12">
               <p className="max-w-[52ch] text-sm leading-relaxed text-muted-foreground md:col-span-6">
-                Support the first stage of Obsidian Labs and help us create software,
-                employment opportunities and the foundation for a larger technology company.
+                Obsidian Labs builds software, trains developers and creates real work for
+                students. Our founding campaign is one way to be part of the first stage.
               </p>
               <div className="flex flex-wrap items-center gap-x-8 gap-y-4 md:col-span-6 md:justify-end">
                 <a
@@ -856,10 +856,10 @@ function Index() {
                   Support the Build
                 </a>
                 <a
-                  href="#products"
+                  href="#about"
                   className="label-mono link-underline hover:link-underline-hover"
                 >
-                  View the project →
+                  About the company →
                 </a>
               </div>
             </Reveal>
