@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
 const NAV = [
-  { label: "About", href: "#about" },
-  { label: "Mission", href: "#why" },
-  { label: "Development", href: "#products" },
+  { label: "Company", href: "#about" },
+  { label: "Products", href: "#products" },
   { label: "Training", href: "#training" },
+  { label: "Team", href: "#people" },
   { label: "Campaign", href: "#campaign" },
   { label: "Contact", href: "#contact" },
 ];
