@@ -98,7 +98,8 @@ const ALLOCATION = [
   { item: "Contingency & runway reserve", amount: 6000 },
 ];
 const TOTAL = ALLOCATION.reduce((sum, row) => sum + row.amount, 0);
-const rand = (n: number) => `R${n.toLocaleString("en-ZA")}`;
+// Locale-independent so server and browser render identical text (avoids hydration mismatch).
+const rand = (n: number) => `R${String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 
 const ROADMAP = [
   {
