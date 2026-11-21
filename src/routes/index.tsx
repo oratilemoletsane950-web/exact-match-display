@@ -1,874 +1,496 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 
-import { Hero } from "@/components/obsidian/Hero";
-import { Reveal } from "@/components/obsidian/Reveal";
-import { SiteHeader } from "@/components/obsidian/SiteHeader";
-import { LINKS, MAILTO } from "@/lib/site";
+import { Hero } from "@/components/site/Hero";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { LogoMark } from "@/components/site/Logo";
+import {
+  Eyebrow,
+  GoldRule,
+  Marquee,
+  Reveal,
+  ScrollProgress,
+  Section,
+  Stat,
+} from "@/components/site/primitives";
+import { absoluteUrl, HOME_FAQS, INDUSTRIES, KEYWORDS, MAILTO, SERVICES, SITE } from "@/lib/site";
 
-const TITLE = "Obsidian Labs — Building Software From the Ground Up";
+const TITLE = "Obsidian Labs Software | Software Development in Bloemfontein";
 const DESCRIPTION =
-  "Obsidian Labs is a South African student-led technology company developing software, digital products and games — and training the next generation of developers through structured, practical programmes.";
+  "Obsidian Labs Software is a software development company in Bloemfontein, South Africa. We design and build websites, mobile apps and business systems for hospitality, property, legal, healthcare, retail and dining businesses.";
+
+const FEATURED = INDUSTRIES.filter((i) =>
+  ["hospitality", "real-estate", "dining"].includes(i.slug),
+);
+
+const APPROACH = [
+  {
+    step: "01",
+    title: "Discovery",
+    body: "One working session on the business, the customer and the number that matters. We leave with a scope, a page map and a launch date.",
+  },
+  {
+    step: "02",
+    title: "Design",
+    body: "A design system first — type scale, palette, grid, components — then the pages composed from it. You review the system, not a pile of screenshots.",
+  },
+  {
+    step: "03",
+    title: "Build",
+    body: "Semantic, responsive front-end work with the systems and integrations behind it. Staged for review on real devices, tested against slow networks.",
+  },
+  {
+    step: "04",
+    title: "Launch & care",
+    body: "Handover of code, files and documentation, then monitoring, backups, updates and a defined allowance of changes each month.",
+  },
+];
+
+const DIFFERENTIATORS = [
+  {
+    title: "Design systems, not pages",
+    body: "Every project starts with a type scale, palette, spacing rhythm and component set. Consistency is designed in, so the tenth page looks like it belongs to the first.",
+  },
+  {
+    title: "Built for South African networks",
+    body: "Compressed imagery, considered font loading and server-side rendering. A page that takes eight seconds on a phone has already lost the guest.",
+  },
+  {
+    title: "One team, start to finish",
+    body: "The people who scope the work design it and build it. Nothing is handed to a second agency or a freelancer you never meet.",
+  },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },
-      {
-        name: "keywords",
-        content:
-          "Obsidian Labs, Continental Obsidian Ltd, South African software development, student software developers, student training programmes, software training South Africa, university software, technology startup South Africa",
-      },
+      { name: "keywords", content: KEYWORDS.home.join(", ") },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: SITE.name },
+      { property: "og:locale", content: "en_ZA" },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
-      { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Obsidian Labs" },
-      { property: "og:locale", content: "en_ZA" },
+      { property: "og:url", content: absoluteUrl("/") },
+      { property: "og:image", content: absoluteUrl("/images/hero.jpg") },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
+      { name: "geo.region", content: "ZA-FS" },
+      { name: "geo.placename", content: SITE.city },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/") }],
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Obsidian Labs",
-          description: DESCRIPTION,
-          parentOrganization: { "@type": "Organization", name: "Continental Obsidian Ltd" },
-          address: { "@type": "PostalAddress", addressCountry: "ZA" },
-          foundingDate: "2026",
+          "@graph": [
+            {
+              "@type": ["Organization", "LocalBusiness"],
+              "@id": `${SITE.url}/#organization`,
+              name: SITE.name,
+              legalName: SITE.legalName,
+              alternateName: "Obsidian Labs Software",
+              url: SITE.url,
+              email: SITE.email,
+              description: DESCRIPTION,
+              image: absoluteUrl("/images/hero.jpg"),
+              priceRange: "R",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: SITE.city,
+                addressRegion: SITE.region,
+                addressCountry: SITE.countryCode,
+              },
+              areaServed: [
+                { "@type": "City", name: "Bloemfontein" },
+                { "@type": "AdministrativeArea", name: "Free State" },
+                { "@type": "Country", name: "South Africa" },
+              ],
+              knowsAbout: INDUSTRIES.map((i) => `${i.name} software`),
+              makesOffer: SERVICES.map((s) => ({
+                "@type": "Offer",
+                itemOffered: { "@type": "Service", name: s.title, description: s.short },
+              })),
+            },
+            {
+              "@type": "WebSite",
+              "@id": `${SITE.url}/#website`,
+              url: SITE.url,
+              name: `${SITE.name} Software`,
+              inLanguage: "en-ZA",
+              publisher: { "@id": `${SITE.url}/#organization` },
+            },
+            {
+              "@type": "Service",
+              name: "Software development",
+              serviceType:
+                "Website design, mobile application development and custom business systems",
+              provider: { "@id": `${SITE.url}/#organization` },
+              areaServed: { "@type": "Country", name: "South Africa" },
+              description: DESCRIPTION,
+            },
+            {
+              "@type": "FAQPage",
+              mainEntity: HOME_FAQS.map((faq) => ({
+                "@type": "Question",
+                name: faq.q,
+                acceptedAnswer: { "@type": "Answer", text: faq.a },
+              })),
+            },
+          ],
         }),
       },
     ],
   }),
-  component: Index,
+  component: HomePage,
 });
 
-/* ---------------------------------------------------------------- primitives */
-
-function SectionLabel({ index, name }: { index: string; name: string }) {
-  return (
-    <p className="label-mono flex items-baseline gap-3 text-muted-foreground">
-      <span className="text-foreground">{index}</span>
-      <span aria-hidden className="h-px w-8 bg-rule-strong" />
-      <span>{name}</span>
-    </p>
-  );
-}
-
-function Section({
-  id,
-  label,
-  name,
-  children,
-  className = "",
-}: {
-  id?: string;
-  label?: string;
-  name?: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <section id={id} className={`rule-top ${className}`}>
-      <div className="shell grid gap-10 py-16 md:grid-cols-12 md:gap-8 md:py-24 lg:py-32">
-        {label && name && (
-          <div className="md:col-span-3 lg:col-span-2">
-            <div className="md:sticky md:top-28">
-              <SectionLabel index={label} name={name} />
-            </div>
-          </div>
-        )}
-        <div className={label ? "md:col-span-9 lg:col-span-10" : "md:col-span-12"}>{children}</div>
-      </div>
-    </section>
-  );
-}
-
-const ALLOCATION = [
-  { item: "AI development & programming tools", amount: 14000 },
-  { item: "Student developer compensation", amount: 20000 },
-  { item: "3D modelling & creative services", amount: 2000 },
-  { item: "Hosting, domains & infrastructure", amount: 2000 },
-  { item: "Marketing & product promotion", amount: 2000 },
-  { item: "Contributor rewards & fulfilment", amount: 3000 },
-  { item: "Operational / software costs", amount: 1000 },
-  { item: "Contingency & runway reserve", amount: 6000 },
-];
-const TOTAL = ALLOCATION.reduce((sum, row) => sum + row.amount, 0);
-// Locale-independent so server and browser render identical text (avoids hydration mismatch).
-const rand = (n: number) => `R${String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
-
-const ROADMAP = [
-  {
-    n: "01",
-    title: "Internal software",
-    body: "Tools and systems that help us establish our own development capabilities.",
-  },
-  {
-    n: "02",
-    title: "University software",
-    body: "Software designed around practical problems experienced by university communities and students.",
-  },
-  {
-    n: "03",
-    title: "Small games",
-    body: "Smaller digital games and experimental products designed to create early revenue and test our ability to ship products.",
-  },
-  {
-    n: "04",
-    title: "Commercial software",
-    body: "Once our initial products are established, we will expand into client projects, software products and larger commercial opportunities.",
-  },
-  {
-    n: "05",
-    title: "Scale",
-    body: "After establishing products, users and early revenue, we intend to pursue larger funding through loans, investors and additional funding opportunities.",
-  },
-];
-
-const PHILOSOPHY = [
-  { step: "Build", body: "Create the first products." },
-  { step: "Prove", body: "Test them with real users." },
-  { step: "Earn", body: "Generate early revenue." },
-  { step: "Scale", body: "Approach investors, lenders and larger funding opportunities." },
-];
-
-const REWARDS = [
-  {
-    tier: "R50",
-    name: "Digital supporter",
-    body: "Digital Obsidian Labs Founding Supporter Certificate.",
-  },
-  {
-    tier: "R100",
-    name: "Founding supporter",
-    body: "Digital certificate + recognition on the Obsidian Labs Founding Supporters list.",
-  },
-  {
-    tier: "R250",
-    name: "Early access supporter",
-    body: "Previous rewards + early access to selected software products, prototypes or games.",
-  },
-  {
-    tier: "R500",
-    name: "Founding contributor",
-    body: "Previous rewards + priority access to selected beta releases and invitations to selected online product demonstrations or development updates.",
-  },
-];
-
-const RUNWAY = [
-  {
-    months: "Months 1–2",
-    title: "Foundation",
-    items: [
-      "Establish development team",
-      "Set up tooling",
-      "Establish infrastructure",
-      "Begin internal software",
-    ],
-  },
-  {
-    months: "Months 2–5",
-    title: "Product development",
-    items: [
-      "University-focused software",
-      "Internal tools",
-      "Small games",
-      "Experimental applications",
-      "Web applications",
-    ],
-  },
-  {
-    months: "Months 4–7",
-    title: "Testing & early revenue",
-    items: [
-      "Test products",
-      "Gather user feedback",
-      "Release selected products",
-      "Begin generating early revenue",
-    ],
-  },
-  {
-    months: "Months 6–8+",
-    title: "Commercial expansion",
-    items: [
-      "External clients",
-      "Software products",
-      "University technology solutions",
-      "Custom applications",
-      "Additional revenue opportunities",
-    ],
-  },
-];
-
-const PIPELINE = ["Idea", "AI-assisted development", "Prototype", "Test", "Product"];
-
-const TRAINING_PILLARS = [
-  {
-    title: "Practical foundations",
-    body: "Core programming, code standards, version control and the professional workflow used on real projects.",
-  },
-  {
-    title: "AI-assisted development",
-    body: "Hands-on training with the same AI development tooling our production teams use daily.",
-  },
-  {
-    title: "Project readiness",
-    body: "How real products are planned, scoped, tested and shipped — not just how code is written.",
-  },
-  {
-    title: "Mentored build-up",
-    body: "Guided practice on internal exercises and prototypes before students touch live project work.",
-  },
-];
-
-const FUTURE_FUNDING = [
-  "Business loans",
-  "Private investment",
-  "Strategic partnerships",
-  "Additional crowdfunding",
-  "Technology funding programmes",
-  "Client revenue",
-];
-
-/* --------------------------------------------------------------------- page */
-
-function Index() {
+function HomePage() {
   return (
     <>
-      <SiteHeader />
-
-      <main id="top">
-        {/* ------------------------------------------------------------- hero */}
+      <ScrollProgress />
+      <SiteHeader overlay />
+      <main>
         <Hero />
 
-        <div className="shell rule-top">
-          <ul className="grid grid-cols-2 gap-y-3 py-4 lg:grid-cols-4">
-            {[
-              "Continental Obsidian Ltd",
-              "South Africa",
-              "Software development & student training / 2026",
-              "Obsidian Labs / 001",
-            ].map((meta) => (
-              <li key={meta} className="label-mono text-muted-foreground">
-                {meta}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <Marquee
+          items={[
+            "Websites",
+            "Applications",
+            "Business systems",
+            "Bloemfontein",
+            "Design systems",
+            "Direct booking",
+            "E-commerce",
+            "CRM & inventory",
+          ]}
+          className="bg-[#efe9dc]"
+        />
 
-        {/* ------------------------------------------------------------ about */}
-        <Section id="about" label="01" name="Company">
-          <div className="grid gap-10 md:grid-cols-12">
-            <Reveal className="md:col-span-5">
-              <h2 className="display-md max-w-[18ch]">Obsidian Labs / Continental Obsidian Ltd</h2>
+        {/* ------------------------------------------------------------ studio */}
+        <Section id="studio" index="01" label="The studio">
+          <div className="grid gap-10 lg:grid-cols-12">
+            <Reveal className="lg:col-span-7">
+              <h2 className="display-lg max-w-[20ch]">A studio, not an assembly line.</h2>
             </Reveal>
-            <Reveal delay={100} className="md:col-span-6 md:col-start-7">
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                Obsidian Labs operates as a technology development initiative under Continental
-                Obsidian Ltd.
+            <Reveal delay={120} className="lg:col-span-5 lg:pt-2">
+              <p className="body-lead">
+                <strong className="font-normal">Obsidian Labs Software</strong> is a software
+                development studio based in {SITE.city}, South Africa. We build the digital front
+                door and the systems behind it for companies that intend to be taken seriously.
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                The laboratory is focused on developing software, digital products and experimental
-                technology while establishing a foundation for future technology ventures.
+              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+                The studio works in small, deliberate engagements: one industry, one audience, one
+                commercial purpose at a time. That is why our work does not look like a theme with
+                your logo dropped into it — and why it keeps working after launch.
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Alongside product development, the laboratory operates a structured student training
-                programme and is establishing a student association — building a sustainable
-                pipeline of trained developers for the company and the wider industry.
+              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+                Six industries, three disciplines, one city. Everything we show in the exhibition is
+                designed and built by us.
               </p>
             </Reveal>
           </div>
+
+          <Reveal className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <Stat value="06" label="Industries with a design language" />
+            <Stat value="03" label="Disciplines — web, app, systems" />
+            <Stat value="01" label="Studio — Bloemfontein" />
+            <Stat value="100%" label="Bespoke interface design" />
+          </Reveal>
         </Section>
 
-        {/* --------------------------------------------------------- products */}
-        <Section id="products" label="02" name="Products">
+        {/* ------------------------------------------------------ capabilities */}
+        <Section id="capabilities" index="02" label="Capabilities" tone="stone">
           <Reveal>
-            <h2 className="display-lg max-w-[18ch]">First build. Then scale.</h2>
-            <p className="body-lead mt-8 max-w-[48ch]">
-              Our first stage will focus on internal software and smaller digital products.
+            <h2 className="display-lg max-w-[22ch]">What we build, and how far it goes.</h2>
+            <p className="body-lead mt-7 max-w-[54ch] text-muted-foreground">
+              Three disciplines that share one design language, so a website, a booking app and an
+              operations dashboard can be delivered as one coherent product.
             </p>
           </Reveal>
 
-          <ol className="mt-14">
-            {ROADMAP.map((row, i) => (
+          <div className="mt-14 grid gap-px bg-[color:var(--rule)] md:grid-cols-3">
+            {SERVICES.map((service, i) => (
               <Reveal
-                as="li"
-                key={row.n}
-                delay={i * 60}
-                className="rule-top grid gap-3 py-7 md:grid-cols-12 md:gap-8 last:border-b last:border-border"
+                key={service.slug}
+                delay={i * 90}
+                className="flex flex-col bg-[color:var(--background)] p-8 lg:p-10"
               >
-                <span className="label-mono text-accent md:col-span-1">{row.n}</span>
-                <h3 className="text-lg font-medium tracking-tight uppercase md:col-span-4 md:text-xl">
-                  {row.title}
-                </h3>
-                <p className="max-w-[60ch] text-sm leading-relaxed text-muted-foreground md:col-span-7">
-                  {row.body}
+                <div className="flex items-baseline justify-between">
+                  <span className="eyebrow">{service.index}</span>
+                  <span aria-hidden className="h-px w-10 bg-[color:var(--gold)] opacity-60" />
+                </div>
+                <h3 className="mt-6 font-serif text-3xl">{service.title}</h3>
+                <p className="mt-4 min-h-[5.5rem] text-sm leading-relaxed text-muted-foreground">
+                  {service.short}
                 </p>
-              </Reveal>
-            ))}
-          </ol>
-        </Section>
-
-        {/* --------------------------------------------------------- training */}
-        <Section id="training" label="03" name="Training">
-          <Reveal>
-            <h2 className="display-lg max-w-[24ch]">Trained first. Trusted with real work.</h2>
-            <p className="body-lead mt-8 max-w-[52ch]">
-              Before any student works on a product, they are trained. Obsidian Labs provides
-              structured, practical training to every student developer before they join a project
-              team.
-            </p>
-          </Reveal>
-
-          <div className="mt-12 grid gap-10 lg:grid-cols-12">
-            <Reveal className="lg:col-span-7">
-              <p className="max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
-                Our training programme develops the fundamentals of professional software
-                development: coding standards, version control, AI-assisted tooling, product
-                thinking and how real projects are planned, built and shipped.
-              </p>
-              <p className="mt-4 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
-                Only once training is complete do students move onto live development work — so
-                clients, supporters and users always work with prepared developers, not beginners.
-              </p>
-              <ol className="mt-10">
-                {TRAINING_PILLARS.map((row, i) => (
-                  <Reveal
-                    as="li"
-                    key={row.title}
-                    delay={i * 60}
-                    className="rule-top grid gap-2 py-6 last:border-b last:border-border md:grid-cols-12 md:gap-8"
-                  >
-                    <span className="label-mono text-accent md:col-span-1">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="text-sm font-medium tracking-tight uppercase md:col-span-4">
-                      {row.title}
-                    </h3>
-                    <p className="max-w-[56ch] text-sm leading-relaxed text-muted-foreground md:col-span-7">
-                      {row.body}
-                    </p>
-                  </Reveal>
-                ))}
-              </ol>
-            </Reveal>
-
-            <Reveal delay={120} className="lg:col-span-5">
-              <dl>
-                {[
-                  ["Training capacity", "100+ students"],
-                  ["Delivery", "Dedicated training platform"],
-                  ["Platform status", "In development"],
-                  ["Student association", "Launching next year"],
-                  ["Path", "Train → Build → Work"],
-                ].map(([k, v]) => (
-                  <div
-                    key={k}
-                    className="rule-top flex items-baseline justify-between gap-6 py-4 last:border-b last:border-border"
-                  >
-                    <dt className="label-mono text-muted-foreground">{k}</dt>
-                    <dd className="text-right text-sm font-medium tracking-tight uppercase md:text-base">
-                      {v}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-                A dedicated training website is currently in development and is being built to
-                accommodate more than 100 students at a time.
-              </p>
-            </Reveal>
-          </div>
-
-          <Reveal className="mt-16 grid gap-8 border-y-2 border-foreground py-10 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-4">
-              <p className="label-mono text-accent">Planned / next year</p>
-              <h3 className="display-md mt-4 max-w-[16ch]">The Student Association</h3>
-            </div>
-            <div className="lg:col-span-7 lg:col-start-6">
-              <p className="body-lead max-w-[52ch]">
-                Next year, we plan to establish the Obsidian Labs Student Association.
-              </p>
-              <p className="mt-5 max-w-[60ch] text-sm leading-relaxed text-muted-foreground">
-                Association members will produce real projects while developing the skills to train
-                other students — meaning graduates of our programme become its future trainers. This
-                creates a self-sustaining pipeline: students learn by building, then lead by
-                teaching.
-              </p>
-            </div>
-          </Reveal>
-        </Section>
-
-        {/* ----------------------------------------------------------- people */}
-        <Section id="people" label="04" name="People">
-          <Reveal>
-            <h2 className="display-lg max-w-[24ch]">
-              Built by students. Built for the real world.
-            </h2>
-          </Reveal>
-
-          <div className="mt-12 grid gap-10 lg:grid-cols-12">
-            <Reveal className="lg:col-span-7">
-              <p className="body-lead max-w-[50ch]">
-                The initial development team will consist of approximately 3–5 current third-year
-                Computer Science students.
-              </p>
-              <p className="mt-6 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
-                Initial compensation will generally range from R500–R1,000 depending on role,
-                responsibilities and contribution.
-              </p>
-              <p className="mt-4 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
-                The goal is to give students something more valuable than another theoretical
-                project: practical experience working on real software products with real users and
-                real constraints.
-              </p>
-            </Reveal>
-
-            <Reveal delay={120} className="lg:col-span-5">
-              <dl>
-                {[
-                  ["Team", "3–5 developers"],
-                  ["Compensation", "R500–R1,000 initial"],
-                  ["Output", "Real products"],
-                  ["Outcome", "Practical experience"],
-                ].map(([k, v]) => (
-                  <div
-                    key={k}
-                    className="rule-top flex items-baseline justify-between gap-6 py-4 last:border-b last:border-border"
-                  >
-                    <dt className="label-mono text-muted-foreground">{k}</dt>
-                    <dd className="text-right text-sm font-medium tracking-tight uppercase md:text-base">
-                      {v}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
-          </div>
-        </Section>
-
-        {/* ---------------------------------------------------------- tooling */}
-        <Section id="tooling" label="05" name="Tooling">
-          <Reveal>
-            <h2 className="display-lg max-w-[20ch]">Small team. Serious tooling.</h2>
-          </Reveal>
-
-          <div className="mt-12 grid gap-10 lg:grid-cols-12">
-            <Reveal className="lg:col-span-7">
-              <p className="body-lead max-w-[48ch]">
-                AI-assisted development will be a core part of our development workflow.
-              </p>
-              <p className="mt-6 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
-                Funding will allow our programming team to access professional development
-                tools and services that support faster delivery and experimentation.
-              </p>
-              <p className="mt-4 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
-                The purpose is not to replace developers. It is to give a small student team access
-                to tools that can dramatically increase development speed, experimentation and
-                productivity.
-              </p>
-            </Reveal>
-
-            <Reveal delay={120} className="lg:col-span-5">
-              <ol className="border border-border">
-                {PIPELINE.map((stage, i) => (
-                  <li
-                    key={stage}
-                    className={`flex items-baseline gap-4 px-5 py-4 ${i === 0 ? "" : "rule-top"}`}
-                  >
-                    <span className="label-mono text-muted-foreground">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="text-sm font-medium tracking-tight uppercase">{stage}</span>
-                    {i < PIPELINE.length - 1 && (
-                      <span aria-hidden className="ml-auto text-accent">
-                        ↓
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ol>
-              <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-                We will use student pricing, shared workspaces, free allowances and other legitimate
-                cost-saving options wherever possible so that funding lasts longer.
-              </p>
-            </Reveal>
-          </div>
-        </Section>
-
-        {/* ----------------------------------------------------- philosophy */}
-        <section className="rule-top">
-          <div className="shell py-16 md:py-24 lg:py-32">
-            <Reveal>
-              <h2 className="display-lg">
-                Build <span className="text-accent">→</span> Prove{" "}
-                <span className="text-accent">→</span> Earn <span className="text-accent">→</span>{" "}
-                Scale
-              </h2>
-            </Reveal>
-
-            <Reveal delay={100} className="mt-10 grid gap-6 md:grid-cols-2 md:gap-12">
-              <p className="max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
-                We are deliberately avoiding the traditional approach of raising a large amount of
-                money before demonstrating what we can build.
-              </p>
-              <p className="max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
-                Our approach is to start with a small amount of capital, build useful software,
-                establish early revenue and use those results to unlock larger opportunities.
-              </p>
-            </Reveal>
-
-            <ol className="mt-14 grid gap-0 md:grid-cols-4 md:gap-8">
-              {PHILOSOPHY.map((p, i) => (
-                <Reveal
-                  as="li"
-                  key={p.step}
-                  delay={i * 80}
-                  className="rule-top py-6 last:border-b last:border-border md:border-b-0 md:pt-6 md:pb-0 md:last:border-b-0"
-                >
-                  <p className="label-mono text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")}
-                    {i < PHILOSOPHY.length - 1 && <span className="text-accent"> ↓</span>}
-                  </p>
-                  <h3 className="mt-4 text-2xl font-medium tracking-tight uppercase">{p.step}</h3>
-                  <p className="mt-2 max-w-[28ch] text-sm leading-relaxed text-muted-foreground">
-                    {p.body}
-                  </p>
-                </Reveal>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        {/* -------------------------------------------------------------- why */}
-        <Section id="why" label="06" name="Approach">
-          <Reveal>
-            <h2 className="display-lg max-w-[22ch]">We are starting small on purpose.</h2>
-          </Reveal>
-
-          <div className="mt-12 grid gap-10 lg:grid-cols-12">
-            <Reveal className="lg:col-span-7">
-              <p className="body-lead max-w-[52ch]">
-                Obsidian Labs is being built around a simple idea: a small, capable team should be
-                able to create serious software without requiring a massive initial budget.
-              </p>
-              <p className="mt-6 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
-                Our first objective is not to scale as quickly as possible. It is to build well,
-                establish working products, learn from real users and create a foundation that can
-                support larger opportunities later.
-              </p>
-            </Reveal>
-
-            <Reveal delay={120} className="lg:col-span-5">
-              <div className="border-y-2 border-foreground py-7">
-                <p className="display-md">
-                  R50,000 <span className="text-accent">→</span> 8+ month development runway
-                </p>
-              </div>
-              <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-                Our initial crowdfunding target is R50,000. We intend to use the funding
-                conservatively and stretch it across at least eight months of development.
-              </p>
-            </Reveal>
-          </div>
-        </Section>
-
-        {/* --------------------------------------------------------- campaign */}
-        <section id="campaign" className="invert-surface">
-          <div className="shell py-16 md:py-24 lg:py-32">
-            <Reveal>
-              <SectionLabel index="07" name="The campaign" />
-              <h2 className="display-lg mt-8 max-w-[22ch]">Help us build the foundation.</h2>
-            </Reveal>
-
-            <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-8">
-              <Reveal className="lg:col-span-5">
-                <p className="display-xl text-accent">R50,000</p>
-                <p className="body-lead mt-6 max-w-[36ch]">
-                  Our initial crowdfunding target is R50,000.
-                </p>
-                <p className="mt-6 max-w-[44ch] text-sm leading-relaxed text-muted-foreground">
-                  The funding will provide our small development team with the tools, compensation
-                  and infrastructure required to operate for at least eight months while we
-                  establish our first software products.
-                </p>
-                <a
-                  href={LINKS.backabuddy}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="label-mono mt-10 inline-block border border-foreground px-7 py-4 transition-colors hover:bg-foreground hover:text-background"
-                >
-                  Support Obsidian Labs
-                </a>
-              </Reveal>
-
-              <Reveal delay={120} className="lg:col-span-7">
-                <table className="w-full border-collapse text-left">
-                  <caption className="label-mono mb-4 text-left text-muted-foreground">
-                    Allocation of funds
-                  </caption>
-                  <tbody>
-                    {ALLOCATION.map((row) => (
-                      <tr key={row.item} className="rule-top align-baseline">
-                        <th
-                          scope="row"
-                          className="w-full py-3.5 pr-4 text-xs font-medium tracking-[0.08em] uppercase md:text-sm"
-                        >
-                          {row.item}
-                          <span
-                            aria-hidden
-                            className="mt-2 block h-[3px] bg-accent"
-                            style={{ width: `${(row.amount / TOTAL) * 100}%` }}
-                          />
-                        </th>
-                        <td className="label-mono py-3.5 text-right whitespace-nowrap">
-                          {rand(row.amount)}
-                        </td>
-                      </tr>
-                    ))}
-                    <tr className="border-y-2 border-foreground">
-                      <th
-                        scope="row"
-                        className="py-4 text-sm font-medium tracking-[0.08em] uppercase"
-                      >
-                        Total
-                      </th>
-                      <td className="py-4 text-right text-sm font-medium tracking-tight">
-                        {rand(TOTAL)}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                <p className="mt-8 max-w-[64ch] border-l-2 border-accent pl-5 text-xs leading-relaxed text-muted-foreground">
-                  The R50,000 figure represents the gross crowdfunding target. Platform and payment
-                  fees will reduce the amount available for operations. Actual expenditure will
-                  therefore be prioritised according to available net funds.
-                </p>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
-        {/* ------------------------------------------------------- supporters */}
-        <Section id="supporters" label="08" name="Supporters">
-          <Reveal>
-            <h2 className="display-lg max-w-[24ch]">
-              Back the build. Become part of the beginning.
-            </h2>
-            <p className="body-lead mt-8 max-w-[52ch]">
-              Contributors receive low-cost digital rewards, designed so that as much funding as
-              possible remains available for development.
-            </p>
-          </Reveal>
-
-          <ol className="mt-14 grid md:grid-cols-2 lg:grid-cols-4">
-            {REWARDS.map((r, i) => (
-              <Reveal
-                as="li"
-                key={r.tier}
-                delay={i * 70}
-                className="rule-top py-7 last:border-b last:border-border lg:border-b-0 lg:border-l lg:border-l-border lg:px-6 lg:pt-0 lg:pb-0 lg:first:border-l-0 lg:first:pl-0 lg:last:border-b-0"
-              >
-                <p className="text-3xl font-medium tracking-tight">{r.tier}</p>
-                <h3 className="label-mono mt-4 text-foreground">{r.name}</h3>
-                <p className="mt-3 max-w-[34ch] text-sm leading-relaxed text-muted-foreground">
-                  {r.body}
-                </p>
-              </Reveal>
-            ))}
-          </ol>
-
-          <Reveal className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <a
-              href={LINKS.backabuddy}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="label-mono bg-foreground px-7 py-4 text-background transition-colors hover:bg-ink-soft"
-            >
-              Support Obsidian Labs
-            </a>
-            <p className="max-w-[46ch] text-xs leading-relaxed text-muted-foreground">
-              Rewards are intentionally designed to be primarily digital so that contributor funds
-              can remain focused on development.
-            </p>
-          </Reveal>
-        </Section>
-
-        {/* ----------------------------------------------------------- runway */}
-        <Section id="runway" label="09" name="The runway">
-          <Reveal>
-            <h2 className="display-lg max-w-[20ch]">Eight months to prove the model.</h2>
-          </Reveal>
-
-          <ol className="mt-14">
-            {RUNWAY.map((phase, i) => (
-              <Reveal
-                as="li"
-                key={phase.months}
-                delay={i * 60}
-                className="rule-top grid gap-4 py-8 md:grid-cols-12 md:gap-8 last:border-b last:border-border"
-              >
-                <p className="label-mono text-accent md:col-span-3">{phase.months}</p>
-                <h3 className="text-lg font-medium tracking-tight uppercase md:col-span-3">
-                  {phase.title}
-                </h3>
-                <ul className="md:col-span-6">
-                  {phase.items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-3 py-1 text-sm leading-relaxed text-muted-foreground"
-                    >
-                      <span aria-hidden className="mt-2.5 h-px w-3 shrink-0 bg-rule-strong" />
+                <ul className="mt-6 space-y-2.5">
+                  {service.items.slice(0, 4).map((item) => (
+                    <li key={item} className="flex gap-3 text-sm">
+                      <span aria-hidden className="mt-2 h-1 w-1 shrink-0 bg-[color:var(--gold)]" />
                       {item}
                     </li>
                   ))}
                 </ul>
+                <Link
+                  to="/services"
+                  hash={service.slug}
+                  className="label-mono link-underline hover:link-underline-hover mt-8 inline-block text-[color:var(--gold)]"
+                >
+                  Explore {service.title.toLowerCase()} →
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+
+        {/* --------------------------------------------------------- industries */}
+        <Section id="industries" index="03" label="Industries">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <Reveal>
+              <h2 className="display-lg max-w-[22ch]">Every industry reads differently.</h2>
+            </Reveal>
+            <Reveal delay={100}>
+              <Link
+                to="/industries"
+                className="label-mono link-underline hover:link-underline-hover text-[color:var(--gold)]"
+              >
+                All industries →
+              </Link>
+            </Reveal>
+          </div>
+          <Reveal className="mt-6 max-w-[60ch]">
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              A hotel guest, a property seller, a patient and a diner are not persuaded by the same
+              page. Each industry below has its own template in our exhibition, built around the way
+              that customer actually decides.
+            </p>
+          </Reveal>
+
+          <ol className="mt-14">
+            {INDUSTRIES.map((industry, i) => (
+              <Reveal
+                as="li"
+                key={industry.slug}
+                delay={i * 50}
+                className="group rule-top last:border-b last:border-[color:var(--rule)]"
+              >
+                <Link
+                  to="/exhibition/$slug"
+                  params={{ slug: industry.slug }}
+                  className="grid items-baseline gap-3 py-7 md:grid-cols-12 md:gap-6"
+                >
+                  <span className="label-mono text-[color:var(--gold)] md:col-span-1">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="md:col-span-4">
+                    <h3 className="font-serif text-2xl transition-colors group-hover:text-[color:var(--gold)] md:text-3xl">
+                      {industry.name}
+                    </h3>
+                    <p className="label-mono mt-2 text-muted-foreground">{industry.plural}</p>
+                  </div>
+                  <p className="max-w-[52ch] text-sm leading-relaxed text-muted-foreground md:col-span-6">
+                    {industry.summary}
+                  </p>
+                  <span
+                    aria-hidden
+                    className="hidden text-right text-[color:var(--gold)] md:col-span-1 md:block"
+                  >
+                    →
+                  </span>
+                </Link>
               </Reveal>
             ))}
           </ol>
-
-          <Reveal className="mt-16">
-            <p className="label-mono text-muted-foreground">
-              The objective is not to spend the R50,000.
-            </p>
-            <p className="display-lg mt-6 max-w-[26ch]">
-              The objective is to turn it into something worth more.
-            </p>
-          </Reveal>
         </Section>
 
-        {/* ---------------------------------------------------- future funding */}
-        <Section id="next" label="10" name="What comes next">
-          <Reveal>
-            <h2 className="display-lg max-w-[24ch]">The first R50,000 is the foundation.</h2>
-          </Reveal>
-
-          <div className="mt-12 grid gap-10 lg:grid-cols-12">
-            <Reveal className="lg:col-span-7">
-              <p className="body-lead max-w-[52ch]">
-                Once our initial software products are established and we can demonstrate working
-                technology, early users and revenue, we intend to pursue larger sources of capital.
-              </p>
-              <p className="mt-10 max-w-[36ch] border-t-2 border-foreground pt-6 text-xl font-medium tracking-tight uppercase md:text-2xl">
-                We want future funding to be based on evidence — not promises.
-              </p>
+        {/* ------------------------------------------------------ selected work */}
+        <Section index="04" label="Exhibition" tone="dark">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <Reveal>
+              <h2 className="display-lg max-w-[20ch] text-[#f6f2e9]">
+                Capability, shown rather than claimed.
+              </h2>
             </Reveal>
+            <Reveal delay={100}>
+              <Link
+                to="/exhibition"
+                className="label-mono link-underline hover:link-underline-hover text-[#c9ab77]"
+              >
+                Open the full exhibition →
+              </Link>
+            </Reveal>
+          </div>
 
-            <Reveal delay={120} className="lg:col-span-5">
-              <ul>
-                {FUTURE_FUNDING.map((item, i) => (
-                  <li
-                    key={item}
-                    className="rule-top flex items-baseline gap-4 py-3.5 last:border-b last:border-border"
-                  >
-                    <span className="label-mono text-muted-foreground">
-                      {String(i + 1).padStart(2, "0")}
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
+            {FEATURED.map((industry, i) => (
+              <Reveal key={industry.slug} delay={i * 90}>
+                <Link
+                  to="/exhibition/$slug"
+                  params={{ slug: industry.slug }}
+                  className="group block"
+                >
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={
+                        industry.slug === "hospitality"
+                          ? "/images/hotel-suite.jpg"
+                          : industry.slug === "real-estate"
+                            ? "/images/estate.jpg"
+                            : "/images/dining.jpg"
+                      }
+                      alt={`${industry.demoBrand} — ${industry.demoKind} template by Obsidian Labs`}
+                      className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      loading="lazy"
+                    />
+                    <span className="label-mono absolute top-4 left-4 bg-[#0b0b0c]/70 px-3 py-2 text-[#f6f2e9] backdrop-blur-sm">
+                      Concept template
                     </span>
-                    <span className="text-sm font-medium tracking-[0.06em] uppercase">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+                  </div>
+                  <div className="mt-5 flex items-baseline justify-between gap-4">
+                    <div>
+                      <h3 className="font-serif text-2xl text-[#f6f2e9]">{industry.demoBrand}</h3>
+                      <p className="mt-1 text-sm text-muted-foreground">{industry.demoKind}</p>
+                    </div>
+                    <span className="label-mono text-[#c9ab77]">{industry.name}</span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
           </div>
         </Section>
 
-        {/* -------------------------------------------------------- final CTA */}
-        <section className="invert-surface">
-          <div className="shell py-20 md:py-28 lg:py-36">
-            <Reveal>
-              <p className="label-mono text-muted-foreground">
-                Obsidian Labs / Continental Obsidian Ltd
-              </p>
-              <h2 className="display-xl mt-8 max-w-[20ch]">
-                A technology company, built from the ground up.
-                <span className="block text-muted-foreground">
-                  Start with what we make, or help fund it.
-                </span>
-              </h2>
-            </Reveal>
+        {/* ----------------------------------------------------------- approach */}
+        <Section index="05" label="Approach">
+          <Reveal>
+            <h2 className="display-lg max-w-[20ch]">Four movements, one outcome.</h2>
+          </Reveal>
+          <ol className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {APPROACH.map((item, i) => (
+              <Reveal
+                as="li"
+                key={item.step}
+                delay={i * 80}
+                className="border-t border-[color:var(--rule-strong)] pt-6"
+              >
+                <span className="eyebrow">{item.step}</span>
+                <h3 className="mt-4 font-serif text-2xl">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+              </Reveal>
+            ))}
+          </ol>
+        </Section>
 
-            <Reveal delay={120} className="mt-12 grid gap-10 md:grid-cols-12">
-              <p className="max-w-[52ch] text-sm leading-relaxed text-muted-foreground md:col-span-6">
-                Obsidian Labs builds software, trains developers and creates real work for students.
-                Our founding campaign is one way to be part of the first stage.
+        {/* -------------------------------------------------------------- why */}
+        <Section index="06" label="Why Obsidian" tone="stone">
+          <div className="grid gap-12 lg:grid-cols-12">
+            <Reveal className="lg:col-span-4">
+              <h2 className="display-lg max-w-[14ch]">Standards before style.</h2>
+              <GoldRule className="mt-8" />
+              <p className="mt-8 text-sm leading-relaxed text-muted-foreground">
+                {SITE.legalName} trades as {SITE.name}. We work from {SITE.city} with clients across
+                South Africa.
               </p>
-              <div className="flex flex-wrap items-center gap-x-8 gap-y-4 md:col-span-6 md:justify-end">
-                <a
-                  href={LINKS.backabuddy}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="label-mono bg-background px-7 py-4 text-foreground transition-opacity hover:opacity-85"
-                >
-                  Support the Build
-                </a>
-                <a href="#about" className="label-mono link-underline hover:link-underline-hover">
-                  About the company →
-                </a>
+            </Reveal>
+            <div className="lg:col-span-8">
+              <ul>
+                {DIFFERENTIATORS.map((item, i) => (
+                  <Reveal
+                    as="li"
+                    key={item.title}
+                    delay={i * 80}
+                    className="rule-top grid gap-3 py-7 last:border-b last:border-[color:var(--rule)] md:grid-cols-12"
+                  >
+                    <span className="label-mono text-[color:var(--gold)] md:col-span-2">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="font-serif text-2xl md:col-span-4">{item.title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground md:col-span-6">
+                      {item.body}
+                    </p>
+                  </Reveal>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Section>
+
+        {/* -------------------------------------------------------------- faq */}
+        <Section id="faq" index="07" label="Questions">
+          <div className="grid gap-12 lg:grid-cols-12">
+            <Reveal className="lg:col-span-4">
+              <h2 className="display-lg max-w-[16ch]">Asked before the first call.</h2>
+              <p className="mt-6 max-w-[38ch] text-sm leading-relaxed text-muted-foreground">
+                Straight answers about working with Obsidian Labs Software — cost, timelines, what
+                we build and who owns it.
+              </p>
+              <a
+                href={MAILTO}
+                className="label-mono link-underline hover:link-underline-hover mt-8 inline-block text-[color:var(--gold)]"
+              >
+                Ask something else →
+              </a>
+            </Reveal>
+            <Reveal delay={100} className="lg:col-span-8">
+              <div className="divide-y divide-[color:var(--rule)] border-y border-[color:var(--rule)]">
+                {HOME_FAQS.map((faq) => (
+                  <details key={faq.q} className="group py-5">
+                    <summary className="flex cursor-pointer items-start justify-between gap-6 text-left [&::-webkit-details-marker]:hidden">
+                      <h3 className="font-serif text-xl leading-snug md:text-2xl">{faq.q}</h3>
+                      <span
+                        aria-hidden
+                        className="mt-1 shrink-0 text-lg text-[color:var(--gold)] transition-transform duration-300 group-open:rotate-45"
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <p className="mt-4 max-w-[68ch] text-sm leading-relaxed text-muted-foreground">
+                      {faq.a}
+                    </p>
+                  </details>
+                ))}
               </div>
             </Reveal>
           </div>
+        </Section>
+
+        {/* -------------------------------------------------------------- cta */}
+        <section className="surface-dark grain relative overflow-hidden">
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_0%,rgba(201,171,119,0.16),transparent_55%)]"
+          />
+          <div className="shell relative grid gap-10 py-24 md:grid-cols-12 md:py-32">
+            <Reveal className="md:col-span-7">
+              <Eyebrow>Start here</Eyebrow>
+              <h2 className="display-lg mt-8 max-w-[18ch] text-[#f6f2e9]">
+                Let us build something worth keeping.
+              </h2>
+            </Reveal>
+            <Reveal delay={120} className="flex flex-col justify-end md:col-span-5">
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Tell us about the business, what the site or system has to do, and when it has to be
+                live. We reply with the questions we need answered and a proposed scope.
+              </p>
+              <a href={MAILTO} className="lux-btn mt-8 self-start">
+                Email the studio
+              </a>
+              <p className="label-mono mt-6 text-muted-foreground">
+                {SITE.city} · {SITE.region} · {SITE.country}
+              </p>
+            </Reveal>
+          </div>
+          <div className="shell flex items-center justify-between pb-10">
+            <LogoMark className="h-10 w-10 text-[#c9ab77]/70" />
+            <p className="label-mono text-muted-foreground">Est. {SITE.city}</p>
+          </div>
         </section>
       </main>
-
-      {/* ---------------------------------------------------------- footer */}
-      <footer id="contact" className="rule-top">
-        <div className="shell py-16 md:py-20">
-          <p className="display-lg">Obsidian Labs</p>
-          <p className="label-mono mt-4 text-muted-foreground">Building from the ground up.</p>
-
-          <div className="rule-top mt-12 grid gap-8 pt-8 md:grid-cols-4">
-            <div>
-              <p className="label-mono text-muted-foreground">Company</p>
-              <p className="mt-3 text-sm">Continental Obsidian Ltd</p>
-              <p className="text-sm text-muted-foreground">South Africa</p>
-            </div>
-            <div>
-              <p className="label-mono text-muted-foreground">Code</p>
-              {LINKS.github ? (
-                <a
-                  href={LINKS.github}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="link-underline hover:link-underline-hover mt-3 inline-block text-sm"
-                >
-                  GitHub
-                </a>
-              ) : (
-                <p className="mt-3 text-sm text-muted-foreground">GitHub — coming soon</p>
-              )}
-            </div>
-            <div>
-              <p className="label-mono text-muted-foreground">Campaign</p>
-              <a
-                href={LINKS.backabuddy}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="link-underline hover:link-underline-hover mt-3 inline-block text-sm"
-              >
-                BackaBuddy
-              </a>
-            </div>
-            <div>
-              <p className="label-mono text-muted-foreground">Contact</p>
-              <a
-                href={MAILTO}
-                className="link-underline hover:link-underline-hover mt-3 inline-block text-sm"
-              >
-                Email
-              </a>
-            </div>
-          </div>
-
-          <p className="label-mono rule-top mt-10 pt-6 text-muted-foreground">
-            © 2026 Continental Obsidian Ltd. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
