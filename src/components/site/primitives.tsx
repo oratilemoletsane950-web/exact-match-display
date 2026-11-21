@@ -57,7 +57,7 @@ export function Eyebrow({
   className,
 }: {
   children: ReactNode;
-  index?: string;
+  index?: string | undefined;
   className?: string;
 }) {
   return (
@@ -130,6 +130,7 @@ export function Parallax({
 
     const io = new IntersectionObserver(
       ([entry]) => {
+        if (!entry) return;
         visible = entry.isIntersecting;
         onScroll();
       },

@@ -9,8 +9,11 @@ import { INDUSTRIES } from "@/lib/site";
  */
 export function DemoBar({ slug }: { slug: string }) {
   const index = INDUSTRIES.findIndex((i) => i.slug === slug);
-  const previous = INDUSTRIES[(index - 1 + INDUSTRIES.length) % INDUSTRIES.length];
-  const next = INDUSTRIES[(index + 1) % INDUSTRIES.length];
+  const current = INDUSTRIES[index] ?? INDUSTRIES[0];
+  const previous =
+    INDUSTRIES[(index - 1 + INDUSTRIES.length) % INDUSTRIES.length] ?? current;
+  const next = INDUSTRIES[(index + 1) % INDUSTRIES.length] ?? current;
+  if (!previous || !next) return null;
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-[#0b0b0c]/92 backdrop-blur-md">

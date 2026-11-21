@@ -63,7 +63,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           <Logo tone={light ? "light" : "dark"} />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-9 lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-5 lg:flex xl:gap-9">
           {NAV.map((item) => (
             <Link
               key={item.href}

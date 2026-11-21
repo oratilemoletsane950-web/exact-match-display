@@ -19,6 +19,9 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ExhibitionIndexRouteImport } from './routes/exhibition.index'
 import { Route as ExhibitionSlugRouteImport } from './routes/exhibition.$slug'
+import { Route as PortfolioIndexRouteImport } from './routes/portfolio.index'
+import { Route as PortfolioGroupIndexRouteImport } from './routes/portfolio.$group.index'
+import { Route as PortfolioGroupSlugRouteImport } from './routes/portfolio.$group.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -70,6 +73,21 @@ const ExhibitionSlugRoute = ExhibitionSlugRouteImport.update({
   path: '/exhibition/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PortfolioIndexRoute = PortfolioIndexRouteImport.update({
+  id: '/portfolio/',
+  path: '/portfolio/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioGroupIndexRoute = PortfolioGroupIndexRouteImport.update({
+  id: '/portfolio/$group/',
+  path: '/portfolio/$group/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioGroupSlugRoute = PortfolioGroupSlugRouteImport.update({
+  id: '/portfolio/$group/$slug',
+  path: '/portfolio/$group/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -82,6 +100,9 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/exhibition/$slug': typeof ExhibitionSlugRoute
   '/exhibition/': typeof ExhibitionIndexRoute
+  '/portfolio/': typeof PortfolioIndexRoute
+  '/portfolio/$group/$slug': typeof PortfolioGroupSlugRoute
+  '/portfolio/$group/': typeof PortfolioGroupIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -94,6 +115,9 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/exhibition/$slug': typeof ExhibitionSlugRoute
   '/exhibition': typeof ExhibitionIndexRoute
+  '/portfolio': typeof PortfolioIndexRoute
+  '/portfolio/$group/$slug': typeof PortfolioGroupSlugRoute
+  '/portfolio/$group': typeof PortfolioGroupIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -107,6 +131,9 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/exhibition/$slug': typeof ExhibitionSlugRoute
   '/exhibition/': typeof ExhibitionIndexRoute
+  '/portfolio/': typeof PortfolioIndexRoute
+  '/portfolio/$group/$slug': typeof PortfolioGroupSlugRoute
+  '/portfolio/$group/': typeof PortfolioGroupIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -121,6 +148,9 @@ export interface FileRouteTypes {
     | '/terms'
     | '/exhibition/$slug'
     | '/exhibition/'
+    | '/portfolio/'
+    | '/portfolio/$group/$slug'
+    | '/portfolio/$group/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -133,6 +163,9 @@ export interface FileRouteTypes {
     | '/terms'
     | '/exhibition/$slug'
     | '/exhibition'
+    | '/portfolio'
+    | '/portfolio/$group/$slug'
+    | '/portfolio/$group'
   id:
     | '__root__'
     | '/'
@@ -145,6 +178,9 @@ export interface FileRouteTypes {
     | '/terms'
     | '/exhibition/$slug'
     | '/exhibition/'
+    | '/portfolio/'
+    | '/portfolio/$group/$slug'
+    | '/portfolio/$group/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -158,6 +194,9 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   ExhibitionSlugRoute: typeof ExhibitionSlugRoute
   ExhibitionIndexRoute: typeof ExhibitionIndexRoute
+  PortfolioIndexRoute: typeof PortfolioIndexRoute
+  PortfolioGroupSlugRoute: typeof PortfolioGroupSlugRoute
+  PortfolioGroupIndexRoute: typeof PortfolioGroupIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -232,6 +271,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExhibitionSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portfolio/': {
+      id: '/portfolio/'
+      path: '/portfolio'
+      fullPath: '/portfolio/'
+      preLoaderRoute: typeof PortfolioIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio/$group/': {
+      id: '/portfolio/$group/'
+      path: '/portfolio/$group'
+      fullPath: '/portfolio/$group/'
+      preLoaderRoute: typeof PortfolioGroupIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio/$group/$slug': {
+      id: '/portfolio/$group/$slug'
+      path: '/portfolio/$group/$slug'
+      fullPath: '/portfolio/$group/$slug'
+      preLoaderRoute: typeof PortfolioGroupSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -246,6 +306,9 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   ExhibitionSlugRoute: ExhibitionSlugRoute,
   ExhibitionIndexRoute: ExhibitionIndexRoute,
+  PortfolioIndexRoute: PortfolioIndexRoute,
+  PortfolioGroupSlugRoute: PortfolioGroupSlugRoute,
+  PortfolioGroupIndexRoute: PortfolioGroupIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

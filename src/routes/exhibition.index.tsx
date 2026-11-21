@@ -222,6 +222,12 @@ function ExhibitionPage() {
               >
                 Industries we serve →
               </Link>
+              <Link
+                to="/portfolio"
+                className="label-mono link-underline hover:link-underline-hover text-[color:var(--gold-text)]"
+              >
+                The 100-template portfolio →
+              </Link>
             </Reveal>
           </div>
         </section>

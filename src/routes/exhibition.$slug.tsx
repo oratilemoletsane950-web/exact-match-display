@@ -59,7 +59,7 @@ export const Route = createFileRoute("/exhibition/$slug")({
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
         { property: "og:url", content: absoluteUrl(`/exhibition/${industry.slug}`) },
-        { property: "og:image", content: absoluteUrl(IMAGES[industry.slug]) },
+        { property: "og:image", content: absoluteUrl(IMAGES[industry.slug] ?? "/images/hero.jpg") },
         {
           property: "og:image:alt",
           content: `${industry.demoBrand} — ${industry.demoKind} website concept`,
@@ -72,7 +72,7 @@ export const Route = createFileRoute("/exhibition/$slug")({
           property: "og:image:height",
           content: String(IMAGE_DIMENSIONS[industry.slug]?.height ?? 752),
         },
-        { name: "twitter:image", content: absoluteUrl(IMAGES[industry.slug]) },
+        { name: "twitter:image", content: absoluteUrl(IMAGES[industry.slug] ?? "/images/hero.jpg") },
         { name: "robots", content: "index, follow" },
       ],
       links: [{ rel: "canonical", href: absoluteUrl(`/exhibition/${industry.slug}`) }],
