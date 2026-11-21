@@ -16,8 +16,14 @@ export function HealthcareTemplate() {
       <TplNav
         brand="Sunnyside Medical"
         sub="Family practice · Bloemfontein"
-        items={["Services", "Team", "Fees", "Visit"]}
+        items={[
+          { label: "Services", href: "#services" },
+          { label: "Team", href: "#team" },
+          { label: "Fees", href: "#fees" },
+          { label: "Book", href: "#reserve" },
+        ]}
         cta="Book an appointment"
+        ctaHref="#reserve"
       />
 
       {/* hero */}

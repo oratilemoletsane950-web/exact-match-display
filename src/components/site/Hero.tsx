@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 
 import { LogoMark } from "@/components/site/Logo";
 import { Parallax } from "@/components/site/primitives";
-import { MAILTO, SITE } from "@/lib/site";
+import { MAILTO } from "@/lib/site";
 
 const CREDENTIALS = [
   { label: "Studio", value: "Bloemfontein, ZA" },
@@ -100,24 +100,16 @@ export function Hero() {
         <dl className="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/15 pt-6 md:grid-cols-4">
           {CREDENTIALS.map((item) => (
             <div key={item.label}>
-              <dt className="label-mono text-[#f6f2e9]/45">{item.label}</dt>
+              <dt className="label-mono text-[#f6f2e9]/60">{item.label}</dt>
               <dd className="mt-2 text-sm text-[#f6f2e9]/90">{item.value}</dd>
             </div>
           ))}
         </dl>
-        <p className="label-mono mt-8 flex items-center gap-3 text-[#f6f2e9]/40">
+        <p className="label-mono mt-8 flex items-center gap-3 text-[#f6f2e9]/60">
           <span aria-hidden className="inline-block h-8 w-px bg-[#c9ab77]/50" />
           Scroll to explore
         </p>
       </div>
-
-      <a
-        href="#studio"
-        aria-label={`Scroll to ${SITE.name} studio introduction`}
-        className="sr-only"
-      >
-        Skip hero
-      </a>
     </section>
   );
 }

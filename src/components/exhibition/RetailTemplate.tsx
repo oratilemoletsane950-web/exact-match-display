@@ -18,8 +18,13 @@ export function RetailTemplate() {
       <TplNav
         brand="Atelier Noir"
         sub="Johannesburg · Cape Town"
-        items={["New in", "Ready to wear", "Objects", "Journal"]}
+        items={[
+          { label: "New in", href: "#shop" },
+          { label: "Lookbook", href: "#lookbook" },
+          { label: "Newsletter", href: "#newsletter" },
+        ]}
         cta="Bag (0)"
+        ctaHref="#shop"
       />
 
       {/* hero */}
@@ -149,7 +154,7 @@ export function RetailTemplate() {
       </section>
 
       {/* newsletter */}
-      <section className="border-t border-[var(--tpl-line)]">
+      <section id="newsletter" className="border-t border-[var(--tpl-line)]">
         <div className="mx-auto flex max-w-[90rem] flex-col items-start justify-between gap-6 px-5 py-14 md:flex-row md:items-center md:px-10">
           <div>
             <h2 className="text-lg tracking-[0.15em] uppercase">The list</h2>

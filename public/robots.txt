@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /lovable-error-reporting
 
 Sitemap: https://obsidianlabs.co.za/sitemap.xml

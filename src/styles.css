@@ -63,6 +63,8 @@
   --ink-soft: #17181a;
   --ivory: #f6f2e9;
   --gold: #b89355;
+  /* champagne darkened for text on ivory surfaces — 5.5:1 against #f6f2e9 */
+  --gold-text: #7d5f2e;
 
   --card: #fbf8f1;
   --card-foreground: #0b0b0c;
@@ -96,6 +98,7 @@
   --background: #0b0b0c;
   --foreground: #f6f2e9;
   --muted-foreground: rgba(246, 242, 233, 0.62);
+  --gold-text: #c9ab77;
   --primary: #f6f2e9;
   --primary-foreground: #0b0b0c;
   --card: #101113;
@@ -112,6 +115,7 @@
   --background: #eae4d8;
   --foreground: #0b0b0c;
   --muted-foreground: #5f594e;
+  --gold-text: #7d5f2e;
   background-color: var(--background);
   color: var(--foreground);
 }
@@ -246,7 +250,7 @@
 }
 
 @utility gold-text {
-  color: var(--gold);
+  color: var(--gold-text);
 }
 
 @utility eyebrow {
@@ -254,7 +258,7 @@
   font-size: 0.6875rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-text);
 }
 
 /* ------------------------------------------------------------- controls */
@@ -415,7 +419,7 @@
   --tpl-bg: #f4f2ee;
   --tpl-fg: #1b1a17;
   --tpl-muted: #6b675f;
-  --tpl-accent: #8a7350;
+  --tpl-accent: #7c6544;
   --tpl-line: rgba(27, 26, 23, 0.16);
   --tpl-surface: #eceae5;
 }

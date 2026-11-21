@@ -13,7 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { LogoMark } from "../components/site/Logo";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { SITE } from "../lib/site";
+import { absoluteUrl, SITE } from "../lib/site";
 
 function NotFoundComponent() {
   return (
@@ -86,7 +86,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#0b0b0c" },
       { property: "og:site_name", content: SITE.name },
       { property: "og:locale", content: "en_ZA" },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: absoluteUrl("/images/hero.jpg") },
+      {
+        property: "og:image:alt",
+        content: "Obsidian Labs Software — software studio in Bloemfontein",
+      },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: absoluteUrl("/images/hero.jpg") },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -97,7 +104,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Jost:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap",
       },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-      { rel: "apple-touch-icon", href: "/favicon.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
     ],
   }),
 

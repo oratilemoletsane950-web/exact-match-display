@@ -19,6 +19,25 @@ const TEMPLATES = {
 
 type TemplateSlug = keyof typeof TEMPLATES;
 
+const IMAGES: Record<string, string> = {
+  hospitality: "/images/hotel-suite.jpg",
+  "real-estate": "/images/estate.jpg",
+  legal: "/images/legal.jpg",
+  healthcare: "/images/clinic.jpg",
+  retail: "/images/retail.jpg",
+  dining: "/images/dining.jpg",
+};
+
+/** Intrinsic sizes keep link previews from re-cropping each concept's image. */
+const IMAGE_DIMENSIONS: Record<string, { width: number; height: number }> = {
+  hospitality: { width: 1392, height: 752 },
+  "real-estate": { width: 1248, height: 832 },
+  legal: { width: 1248, height: 832 },
+  healthcare: { width: 1392, height: 752 },
+  retail: { width: 880, height: 1184 },
+  dining: { width: 1184, height: 880 },
+};
+
 export const Route = createFileRoute("/exhibition/$slug")({
   loader: ({ params }) => {
     const industry = industryBySlug(params.slug);
@@ -40,6 +59,20 @@ export const Route = createFileRoute("/exhibition/$slug")({
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
         { property: "og:url", content: absoluteUrl(`/exhibition/${industry.slug}`) },
+        { property: "og:image", content: absoluteUrl(IMAGES[industry.slug]) },
+        {
+          property: "og:image:alt",
+          content: `${industry.demoBrand} — ${industry.demoKind} website concept`,
+        },
+        {
+          property: "og:image:width",
+          content: String(IMAGE_DIMENSIONS[industry.slug]?.width ?? 1392),
+        },
+        {
+          property: "og:image:height",
+          content: String(IMAGE_DIMENSIONS[industry.slug]?.height ?? 752),
+        },
+        { name: "twitter:image", content: absoluteUrl(IMAGES[industry.slug]) },
         { name: "robots", content: "index, follow" },
       ],
       links: [{ rel: "canonical", href: absoluteUrl(`/exhibition/${industry.slug}`) }],

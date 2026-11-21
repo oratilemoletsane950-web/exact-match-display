@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -30,13 +31,13 @@ export function LegalPage({
     <>
       <ScrollProgress />
       <SiteHeader />
-      <main>
+      <main id="main-content">
         <section className="surface-dark grain pt-32 pb-16 md:pt-40 md:pb-20">
           <div className="shell">
             <p className="eyebrow">{eyebrow}</p>
             <h1 className="display-lg mt-6 max-w-[24ch] text-[#f6f2e9]">{title}</h1>
             <p className="mt-6 max-w-[62ch] text-sm leading-relaxed text-[#f6f2e9]/65">{intro}</p>
-            <p className="label-mono mt-8 text-[#f6f2e9]/40">Last updated · {updated}</p>
+            <p className="label-mono mt-8 text-[#f6f2e9]/60">Last updated · {updated}</p>
           </div>
         </section>
 
@@ -49,7 +50,7 @@ export function LegalPage({
                   <li key={section.heading}>
                     <a
                       href={`#s-${i + 1}`}
-                      className="text-sm text-muted-foreground transition-colors hover:text-[color:var(--gold)]"
+                      className="text-sm text-muted-foreground transition-colors hover:text-[color:var(--gold-text)]"
                     >
                       {String(i + 1).padStart(2, "0")} {section.heading}
                     </a>
@@ -61,12 +62,12 @@ export function LegalPage({
                 <ul className="mt-3 space-y-2">
                   {legalLinks.map((link) => (
                     <li key={link.href}>
-                      <a
-                        href={link.href}
-                        className="text-sm text-muted-foreground transition-colors hover:text-[color:var(--gold)]"
+                      <Link
+                        to={link.href}
+                        className="text-sm text-muted-foreground transition-colors hover:text-[color:var(--gold-text)]"
                       >
                         {link.label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -79,7 +80,7 @@ export function LegalPage({
               {sections.map((section, i) => (
                 <section key={section.heading} id={`s-${i + 1}`} className="scroll-mt-28">
                   <h2 className="font-serif text-2xl md:text-3xl">
-                    <span className="mr-3 text-[color:var(--gold)]">
+                    <span className="mr-3 text-[color:var(--gold-text)]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     {section.heading}

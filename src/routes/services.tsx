@@ -91,7 +91,7 @@ function ServicesPage() {
     <>
       <ScrollProgress />
       <SiteHeader />
-      <main>
+      <main id="main-content">
         <PageHero
           eyebrow="Services"
           breadcrumb={[{ label: "Home", href: "/" }, { label: "Services" }]}
@@ -136,7 +136,7 @@ function ServicesPage() {
                   <ol className="mt-4 space-y-3">
                     {service.deliverables.map((item, i) => (
                       <li key={item} className="flex gap-4 text-sm">
-                        <span className="label-mono text-[color:var(--gold)]">
+                        <span className="label-mono text-[color:var(--gold-text)]">
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         {item}
@@ -199,7 +199,9 @@ function ServicesPage() {
                   ],
                 ].map(([term, detail]) => (
                   <div key={term} className="grid gap-3 py-6 md:grid-cols-12">
-                    <dt className="label-mono text-[color:var(--gold)] md:col-span-4">{term}</dt>
+                    <dt className="label-mono text-[color:var(--gold-text)] md:col-span-4">
+                      {term}
+                    </dt>
                     <dd className="text-sm leading-relaxed text-muted-foreground md:col-span-8">
                       {detail}
                     </dd>
@@ -227,7 +229,7 @@ function ServicesPage() {
                       <h3 className="font-serif text-xl leading-snug md:text-2xl">{faq.q}</h3>
                       <span
                         aria-hidden
-                        className="mt-1 shrink-0 text-lg text-[color:var(--gold)] transition-transform duration-300 group-open:rotate-45"
+                        className="mt-1 shrink-0 text-lg text-[color:var(--gold-text)] transition-transform duration-300 group-open:rotate-45"
                       >
                         +
                       </span>

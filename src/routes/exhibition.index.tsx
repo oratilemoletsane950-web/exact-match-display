@@ -77,7 +77,7 @@ function ExhibitionPage() {
     <>
       <ScrollProgress />
       <SiteHeader />
-      <main>
+      <main id="main-content">
         <PageHero
           eyebrow="Exhibition"
           breadcrumb={[{ label: "Home", href: "/" }, { label: "Exhibition" }]}
@@ -123,12 +123,14 @@ function ExhibitionPage() {
                   </div>
                   <div className="mt-6 flex flex-wrap items-baseline justify-between gap-3 border-b border-[color:var(--rule)] pb-4">
                     <div>
-                      <h2 className="font-serif text-3xl transition-colors group-hover:text-[color:var(--gold)]">
+                      <h2 className="font-serif text-3xl transition-colors group-hover:text-[color:var(--gold-text)]">
                         {industry.demoBrand}
                       </h2>
                       <p className="mt-1 text-sm text-muted-foreground">{industry.demoKind}</p>
                     </div>
-                    <span className="label-mono text-[color:var(--gold)]">Open template →</span>
+                    <span className="label-mono text-[color:var(--gold-text)]">
+                      Open template →
+                    </span>
                   </div>
                   <p className="mt-4 max-w-[52ch] text-sm leading-relaxed text-muted-foreground">
                     {industry.summary}
@@ -216,7 +218,7 @@ function ExhibitionPage() {
               </a>
               <Link
                 to="/industries"
-                className="label-mono link-underline hover:link-underline-hover text-[color:var(--gold)]"
+                className="label-mono link-underline hover:link-underline-hover text-[color:var(--gold-text)]"
               >
                 Industries we serve →
               </Link>

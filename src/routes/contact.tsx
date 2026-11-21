@@ -70,7 +70,7 @@ function ContactPage() {
     <>
       <ScrollProgress />
       <SiteHeader />
-      <main>
+      <main id="main-content">
         <PageHero
           eyebrow="Contact"
           breadcrumb={[{ label: "Home", href: "/" }, { label: "Contact" }]}
@@ -101,7 +101,7 @@ function ContactPage() {
               </p>
               <a
                 href={MAILTO}
-                className="mt-10 block break-words font-serif text-3xl transition-colors hover:text-[color:var(--gold)] md:text-5xl"
+                className="mt-10 block break-words font-serif text-3xl transition-colors hover:text-[color:var(--gold-text)] md:text-5xl"
               >
                 {SITE.email}
               </a>
@@ -136,7 +136,7 @@ function ContactPage() {
 
             <Reveal delay={100} className="lg:col-span-5">
               <div className="border border-[color:var(--rule)] p-8 lg:sticky lg:top-28">
-                <p className="label-mono text-[color:var(--gold)]">What to include</p>
+                <p className="label-mono text-[color:var(--gold-text)]">What to include</p>
                 <ol className="mt-5 space-y-4">
                   {[
                     "The business, in two sentences — what you sell and to whom.",
@@ -145,7 +145,7 @@ function ContactPage() {
                     "A rough budget range, so the proposal is realistic rather than aspirational.",
                   ].map((item, i) => (
                     <li key={item} className="flex gap-3 text-sm leading-relaxed">
-                      <span className="label-mono mt-0.5 text-[color:var(--gold)]">
+                      <span className="label-mono mt-0.5 text-[color:var(--gold-text)]">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       {item}
@@ -199,7 +199,7 @@ function ContactPage() {
             </Link>
             <a
               href={MAILTO}
-              className="label-mono link-underline hover:link-underline-hover text-[color:var(--gold)]"
+              className="label-mono link-underline hover:link-underline-hover text-[color:var(--gold-text)]"
             >
               {SITE.email}
             </a>

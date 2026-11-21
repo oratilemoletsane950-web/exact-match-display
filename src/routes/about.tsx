@@ -104,7 +104,7 @@ function AboutPage() {
     <>
       <ScrollProgress />
       <SiteHeader />
-      <main>
+      <main id="main-content">
         <PageHero
           eyebrow="About"
           breadcrumb={[{ label: "Home", href: "/" }, { label: "About" }]}
@@ -198,7 +198,7 @@ function AboutPage() {
               </p>
               <Link
                 to="/services"
-                className="label-mono link-underline hover:link-underline-hover mt-8 inline-block text-[color:var(--gold)]"
+                className="label-mono link-underline hover:link-underline-hover mt-8 inline-block text-[color:var(--gold-text)]"
               >
                 How engagements work →
               </Link>
@@ -228,7 +228,9 @@ function AboutPage() {
                   ],
                 ].map(([term, detail]) => (
                   <div key={term} className="grid gap-2 py-5 md:grid-cols-12 md:gap-6">
-                    <dt className="label-mono text-[color:var(--gold)] md:col-span-4">{term}</dt>
+                    <dt className="label-mono text-[color:var(--gold-text)] md:col-span-4">
+                      {term}
+                    </dt>
                     <dd className="text-sm leading-relaxed text-muted-foreground md:col-span-8">
                       {detail}
                     </dd>

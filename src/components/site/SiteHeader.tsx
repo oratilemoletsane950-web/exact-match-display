@@ -27,6 +27,15 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   const light = overlay && !scrolled && !open;
 
   return (
@@ -38,6 +47,13 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           : "border-b border-[color:var(--rule)] bg-[#f6f2e9]/95 backdrop-blur-md",
       )}
     >
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[60] focus:bg-[#0b0b0c] focus:px-4 focus:py-3 focus:text-[0.6875rem] focus:tracking-[0.2em] focus:text-[#f6f2e9] focus:uppercase"
+      >
+        Skip to content
+      </a>
+
       <div className="shell flex h-20 items-center justify-between gap-8">
         <Link
           to="/"

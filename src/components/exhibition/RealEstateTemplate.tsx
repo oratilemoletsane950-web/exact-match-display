@@ -30,8 +30,13 @@ export function RealEstateTemplate() {
       <TplNav
         brand="Meridian"
         sub="Property Co. · Est. 2009"
-        items={["Listings", "Sell", "Areas", "About"]}
+        items={[
+          { label: "Listings", href: "#listings" },
+          { label: "Why Meridian", href: "#why" },
+          { label: "Sell with us", href: "#valuation" },
+        ]}
         cta="Book a valuation"
+        ctaHref="#valuation"
       />
 
       {/* hero: editorial split */}
@@ -138,7 +143,7 @@ export function RealEstateTemplate() {
       </section>
 
       {/* why */}
-      <section className="border-y border-[var(--tpl-line)] bg-[var(--tpl-surface)]">
+      <section id="why" className="border-y border-[var(--tpl-line)] bg-[var(--tpl-surface)]">
         <div className="mx-auto grid max-w-[90rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-10 md:py-24">
           <div className="md:col-span-4">
             <p className="tpl-label">Why Meridian</p>

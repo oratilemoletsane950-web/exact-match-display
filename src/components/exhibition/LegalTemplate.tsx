@@ -50,8 +50,14 @@ export function LegalTemplate() {
       <TplNav
         brand="Van Wyk & Partners"
         sub="Attorneys · Conveyancers · Bloemfontein"
-        items={["Practice areas", "People", "Process", "Contact"]}
+        items={[
+          { label: "Practice areas", href: "#practice" },
+          { label: "People", href: "#people" },
+          { label: "Process", href: "#process" },
+          { label: "Contact", href: "#contact" },
+        ]}
         cta="Request a consultation"
+        ctaHref="#contact"
       />
 
       {/* hero */}

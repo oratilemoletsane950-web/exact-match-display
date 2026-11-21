@@ -190,7 +190,7 @@ export function Marquee({ items, className }: { items: string[]; className?: str
       {items.map((item) => (
         <span key={item} className="label-mono flex items-center text-muted-foreground">
           <span className="px-8">{item}</span>
-          <span aria-hidden className="text-[color:var(--gold)]">
+          <span aria-hidden className="text-[color:var(--gold-text)]">
             ✦
           </span>
         </span>

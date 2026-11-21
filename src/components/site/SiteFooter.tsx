@@ -110,7 +110,7 @@ export function SiteFooter() {
             {SITE.name} Software · {SITE.city} · {SITE.countryCode}
           </p>
         </div>
-        <p className="mt-6 max-w-4xl text-xs leading-relaxed text-muted-foreground/70">
+        <p className="mt-6 max-w-4xl text-xs leading-relaxed text-muted-foreground">
           All exhibition templates are original concept designs produced by {SITE.name} Software to
           demonstrate design and engineering capability. Brand names, imagery and content shown in
           the exhibition are illustrative and do not represent real businesses.

@@ -68,12 +68,15 @@ export function TplNav({
   sub,
   items,
   cta,
+  ctaHref = "#reserve",
   align = "split",
 }: {
   brand: string;
   sub?: string;
-  items: string[];
+  items: { label: string; href: string }[];
   cta: string;
+  /** Anchor the header call to action points at — every template has a different booking section. */
+  ctaHref?: string;
   align?: "split" | "center";
 }) {
   return (
@@ -92,16 +95,16 @@ export function TplNav({
         <nav aria-label={`${brand} navigation`} className="hidden items-center gap-7 lg:flex">
           {items.map((item) => (
             <a
-              key={item}
-              href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
+              key={item.href}
+              href={item.href}
               className="tpl-label text-[var(--tpl-muted)] transition-colors hover:text-[var(--tpl-accent)]"
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </nav>
         <a
-          href="#reserve"
+          href={ctaHref}
           className="tpl-label border border-[var(--tpl-accent)] px-4 py-2.5 text-[var(--tpl-accent)] transition-colors hover:bg-[var(--tpl-accent)] hover:text-[var(--tpl-bg)]"
         >
           {cta}

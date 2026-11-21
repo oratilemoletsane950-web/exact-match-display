@@ -27,8 +27,13 @@ export function HospitalityTemplate() {
       <TplNav
         brand="Aurelia House"
         sub="Boutique hotel & spa · Bloemfontein"
-        items={["Suites", "Dining", "Spa", "The House"]}
+        items={[
+          { label: "Suites", href: "#suites" },
+          { label: "Dining & spa", href: "#dining" },
+          { label: "The house", href: "#house" },
+        ]}
         cta="Reserve"
+        ctaHref="#reserve"
         align="center"
       />
 
@@ -69,7 +74,10 @@ export function HospitalityTemplate() {
       </section>
 
       {/* intro */}
-      <section className="mx-auto grid max-w-[90rem] gap-10 px-5 py-20 md:grid-cols-12 md:px-10 md:py-28">
+      <section
+        id="house"
+        className="mx-auto grid max-w-[90rem] gap-10 px-5 py-20 md:grid-cols-12 md:px-10 md:py-28"
+      >
         <div className="md:col-span-4">
           <p className="tpl-label">The house</p>
         </div>

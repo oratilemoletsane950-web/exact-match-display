@@ -154,7 +154,7 @@ function HomePage() {
     <>
       <ScrollProgress />
       <SiteHeader overlay />
-      <main>
+      <main id="main-content">
         <Hero />
 
         <Marquee
@@ -239,7 +239,7 @@ function HomePage() {
                 <Link
                   to="/services"
                   hash={service.slug}
-                  className="label-mono link-underline hover:link-underline-hover mt-8 inline-block text-[color:var(--gold)]"
+                  className="label-mono link-underline hover:link-underline-hover mt-8 inline-block text-[color:var(--gold-text)]"
                 >
                   Explore {service.title.toLowerCase()} →
                 </Link>
@@ -257,7 +257,7 @@ function HomePage() {
             <Reveal delay={100}>
               <Link
                 to="/industries"
-                className="label-mono link-underline hover:link-underline-hover text-[color:var(--gold)]"
+                className="label-mono link-underline hover:link-underline-hover text-[color:var(--gold-text)]"
               >
                 All industries →
               </Link>
@@ -284,11 +284,11 @@ function HomePage() {
                   params={{ slug: industry.slug }}
                   className="grid items-baseline gap-3 py-7 md:grid-cols-12 md:gap-6"
                 >
-                  <span className="label-mono text-[color:var(--gold)] md:col-span-1">
+                  <span className="label-mono text-[color:var(--gold-text)] md:col-span-1">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div className="md:col-span-4">
-                    <h3 className="font-serif text-2xl transition-colors group-hover:text-[color:var(--gold)] md:text-3xl">
+                    <h3 className="font-serif text-2xl transition-colors group-hover:text-[color:var(--gold-text)] md:text-3xl">
                       {industry.name}
                     </h3>
                     <p className="label-mono mt-2 text-muted-foreground">{industry.plural}</p>
@@ -298,7 +298,7 @@ function HomePage() {
                   </p>
                   <span
                     aria-hidden
-                    className="hidden text-right text-[color:var(--gold)] md:col-span-1 md:block"
+                    className="hidden text-right text-[color:var(--gold-text)] md:col-span-1 md:block"
                   >
                     →
                   </span>
@@ -405,7 +405,7 @@ function HomePage() {
                     delay={i * 80}
                     className="rule-top grid gap-3 py-7 last:border-b last:border-[color:var(--rule)] md:grid-cols-12"
                   >
-                    <span className="label-mono text-[color:var(--gold)] md:col-span-2">
+                    <span className="label-mono text-[color:var(--gold-text)] md:col-span-2">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h3 className="font-serif text-2xl md:col-span-4">{item.title}</h3>
@@ -430,7 +430,7 @@ function HomePage() {
               </p>
               <a
                 href={MAILTO}
-                className="label-mono link-underline hover:link-underline-hover mt-8 inline-block text-[color:var(--gold)]"
+                className="label-mono link-underline hover:link-underline-hover mt-8 inline-block text-[color:var(--gold-text)]"
               >
                 Ask something else →
               </a>
@@ -443,7 +443,7 @@ function HomePage() {
                       <h3 className="font-serif text-xl leading-snug md:text-2xl">{faq.q}</h3>
                       <span
                         aria-hidden
-                        className="mt-1 shrink-0 text-lg text-[color:var(--gold)] transition-transform duration-300 group-open:rotate-45"
+                        className="mt-1 shrink-0 text-lg text-[color:var(--gold-text)] transition-transform duration-300 group-open:rotate-45"
                       >
                         +
                       </span>

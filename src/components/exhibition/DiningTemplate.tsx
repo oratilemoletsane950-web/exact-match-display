@@ -33,8 +33,13 @@ export function DiningTemplate() {
       <TplNav
         brand="Ember & Oak"
         sub="Fire-led dining · Bloemfontein"
-        items={["Menu", "The room", "Private dining", "Visit"]}
+        items={[
+          { label: "Menu", href: "#menu" },
+          { label: "The room", href: "#the-room" },
+          { label: "Visit", href: "#reserve" },
+        ]}
         cta="Reserve a table"
+        ctaHref="#reserve"
         align="center"
       />
 
@@ -115,7 +120,10 @@ export function DiningTemplate() {
       </section>
 
       {/* the room */}
-      <section className="mx-auto grid max-w-[80rem] items-center gap-12 px-5 py-20 md:grid-cols-2 md:px-10 md:py-24">
+      <section
+        id="the-room"
+        className="mx-auto grid max-w-[80rem] items-center gap-12 px-5 py-20 md:grid-cols-2 md:px-10 md:py-24"
+      >
         <img
           src="/images/hero.jpg"
           alt="Ember & Oak interior detail"

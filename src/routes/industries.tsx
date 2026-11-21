@@ -71,7 +71,7 @@ function IndustriesPage() {
     <>
       <ScrollProgress />
       <SiteHeader />
-      <main>
+      <main id="main-content">
         <PageHero
           eyebrow="Industries"
           breadcrumb={[{ label: "Home", href: "/" }, { label: "Industries" }]}
@@ -109,7 +109,7 @@ function IndustriesPage() {
 
                 <div className="mt-10 grid gap-8 sm:grid-cols-2">
                   <div>
-                    <p className="label-mono text-[color:var(--gold)]">What we build</p>
+                    <p className="label-mono text-[color:var(--gold-text)]">What we build</p>
                     <ul className="mt-4 space-y-2.5">
                       {industry.build.map((item) => (
                         <li key={item} className="flex gap-3 text-sm leading-snug">
@@ -123,7 +123,7 @@ function IndustriesPage() {
                     </ul>
                   </div>
                   <div>
-                    <p className="label-mono text-[color:var(--gold)]">Design principles</p>
+                    <p className="label-mono text-[color:var(--gold-text)]">Design principles</p>
                     <ul className="mt-4 space-y-2.5">
                       {industry.principles.map((item) => (
                         <li key={item} className="flex gap-3 text-sm leading-snug">

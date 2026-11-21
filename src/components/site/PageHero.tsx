@@ -59,7 +59,7 @@ export function PageHero({
             <dl className="grid gap-4 self-end md:col-span-5 md:grid-cols-2">
               {meta.map((item) => (
                 <div key={item.label} className="border-t border-white/15 pt-3">
-                  <dt className="label-mono text-[#f6f2e9]/40">{item.label}</dt>
+                  <dt className="label-mono text-[#f6f2e9]/60">{item.label}</dt>
                   <dd className="mt-1.5 text-sm text-[#f6f2e9]/85">{item.value}</dd>
                 </div>
               ))}
