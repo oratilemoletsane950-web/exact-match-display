@@ -2,17 +2,17 @@
 
 > Software development studio in Bloemfontein, Free State, South Africa. We design and build websites, mobile applications and business systems for owner-led companies — hospitality, property, legal, healthcare, retail and dining. Operated by Continental Obsidian Ltd.
 
-Canonical site: https://obsidianlabs.co.za
+Canonical site: https://continentalobsidian.netlify.app
 Contact: continentalobsidian@gmail.com
 
 ## Key pages
-- [Home](https://obsidianlabs.co.za/): services, selected work and studio principles
-- [Services](https://obsidianlabs.co.za/services): websites, applications and business systems
-- [Industries](https://obsidianlabs.co.za/industries): hospitality, real estate, legal, healthcare, retail, dining
-- [Exhibition](https://obsidianlabs.co.za/exhibition): six industry concept templates
-- [Portfolio](https://obsidianlabs.co.za/portfolio): 100 working website and app templates across ten industry groups
-- [About](https://obsidianlabs.co.za/about): the studio, approach and location
-- [Contact](https://obsidianlabs.co.za/contact): project enquiries
+- [Home](https://continentalobsidian.netlify.app/): services, selected work and studio principles
+- [Services](https://continentalobsidian.netlify.app/services): websites, applications and business systems
+- [Industries](https://continentalobsidian.netlify.app/industries): hospitality, real estate, legal, healthcare, retail, dining
+- [Exhibition](https://continentalobsidian.netlify.app/exhibition): six industry concept templates
+- [Portfolio](https://continentalobsidian.netlify.app/portfolio): 100 working website and app templates across ten industry groups
+- [About](https://continentalobsidian.netlify.app/about): the studio, approach and location
+- [Contact](https://continentalobsidian.netlify.app/contact): project enquiries
 
 ## Notes
 - All exhibition and portfolio brands are illustrative concept work, not client claims.

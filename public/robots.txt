@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://obsidianlabs.co.za/sitemap.xml
+Sitemap: https://continentalobsidian.netlify.app/sitemap.xml

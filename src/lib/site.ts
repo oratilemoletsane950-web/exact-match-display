@@ -9,7 +9,7 @@
  * Canonical origin. Update this single constant if the production domain
  * differs — canonicals, Open Graph URLs, JSON-LD and the sitemap all use it.
  */
-export const SITE_URL = "https://obsidianlabs.co.za";
+export const SITE_URL = "https://continentalobsidian.netlify.app";
 
 export const SITE = {
   name: "Obsidian Labs",
