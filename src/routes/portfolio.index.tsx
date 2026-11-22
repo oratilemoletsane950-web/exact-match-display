@@ -27,6 +27,14 @@ export const Route = createFileRoute("/portfolio/")({
       { property: "og:url", content: absoluteUrl("/portfolio") },
       { property: "og:type", content: "website" },
       { property: "og:image", content: absoluteUrl("/images/portfolio/banking.jpg") },
+      { property: "og:image:width", content: "1392" },
+      { property: "og:image:height", content: "752" },
+      { property: "og:image:alt", content: "A hundred website and app templates across ten industries" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
+      { name: "twitter:image", content: absoluteUrl("/images/portfolio/banking.jpg") },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/portfolio") }],
     scripts: [
@@ -45,6 +53,17 @@ export const Route = createFileRoute("/portfolio/")({
             url: absoluteUrl(`/portfolio/${group.slug}`),
             numberOfItems: group.templates.length,
           })),
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
+            { "@type": "ListItem", position: 2, name: "Portfolio", item: absoluteUrl("/portfolio") },
+          ],
         }),
       },
     ],
